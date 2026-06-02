@@ -7,7 +7,7 @@ import Logo from "@/assets/logo.png";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-gray-400">
+    <footer className="bg-gradient-to-b from-black via-gray-900 to-[#0b1220] text-gray-400">
       <div className=" px-15 py-16">
         {/* Top Section */}
         <div className="grid gap-12 lg:grid-cols-2">

@@ -64,15 +64,25 @@ export default function Navbar() {
                 <Spinner size="sm" />
               </div>
             ) : user ? (
-              <Button
-                onClick={handleLogout}
-                className="
+              <div className="flex gap-4 items-center">
+                <div className="flex flex-col">
+                  <p className="bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent font-semibold text-sm">
+                    Welcome!
+                  </p>
+
+                  <p className="font-bold text-sm text-white">{user?.name}</p>
+                </div>
+
+                <Button
+                  onClick={handleLogout}
+                  className="
                 bg-gradient-to-r
                 from-violet-600
                 to-indigo-500"
-              >
-                Logout
-              </Button>
+                >
+                  Logout
+                </Button>
+              </div>
             ) : (
               <div className="space-x-4">
                 <Link
@@ -152,12 +162,25 @@ export default function Navbar() {
                   <Spinner size="sm" />
                 </div>
               ) : user ? (
-                <Button
-                  onClick={handleLogout}
-                  className="bg-gradient-to-r from-violet-600 to-indigo-500"
-                >
-                  Logout
-                </Button>
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-col">
+                    <p className="bg-gradient-to-r from-violet-600 to-indigo-500 bg-clip-text text-transparent font-semibold text-sm">
+                      Welcome!
+                    </p>
+
+                    <p className="font-bold text-sm text-white">{user?.name}</p>
+                  </div>
+
+                  <Button
+                    onClick={handleLogout}
+                    className="
+                bg-gradient-to-r
+                from-violet-600
+                to-indigo-500"
+                  >
+                    Logout
+                  </Button>
+                </div>
               ) : (
                 <div className="space-x-4">
                   <Link
