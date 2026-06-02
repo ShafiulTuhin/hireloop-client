@@ -34,7 +34,7 @@ export default function Navbar() {
             <div className="h-5 w-px bg-white/20" />
 
             <Link
-              href="#"
+              href="/auth/login"
               className="text-sm font-medium text-violet-400 hover:text-violet-300"
             >
               Sign In
