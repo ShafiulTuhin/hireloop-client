@@ -1,6 +1,8 @@
+"use client";
 import { MapPin, Search } from "lucide-react";
 import React from "react";
 import { FaToolbox } from "react-icons/fa";
+import { motion } from "motion/react";
 
 const FindJob = () => {
   return (
@@ -12,16 +14,34 @@ const FindJob = () => {
           <span className="flex items-center gap-2 bg-gray-900 px-4 py-1 rounded-full">
             <FaToolbox color="#FFFF00" />
             <span>
-              <span className="font-bold">50,000+</span> new jobs this month
+              <motion.span
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 2,
+                  // repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="inline-block font-bold"
+              >
+                50,000+
+              </motion.span>
+              new jobs this month
             </span>
           </span>
 
           <span className="h-[1px] w-6 bg-gray-500"></span>
         </h2>
-
-        <h2 className="md:text-4xl text-2xl font-bold mt-5 text-center">
+        <motion.h2
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.15, 1] }}
+          transition={{
+            duration: 1,
+            ease: "easeInOut",
+          }}
+          className="md:text-4xl text-2xl font-bold mt-5 text-center"
+        >
           Find Your Dream Job Today
-        </h2>
+        </motion.h2>
         <p className="text-gray-500 text-center mt-3">
           HireLoop connects top talent with world-class companies. Browse
           thousands of <br /> curated opportunities and land your next role —

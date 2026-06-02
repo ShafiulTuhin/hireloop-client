@@ -9,17 +9,23 @@ import { useForm } from "react-hook-form";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { Description, Label, Radio, RadioGroup } from "@heroui/react";
 
 const Signup = () => {
   const [isPasswordShow, setIsPasswordShow] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      role: "seeker",
+    },
+  });
 
   const router = useRouter();
-
+  const [role, setRole] = useState("seeker");
   const handleSubmitForm = async (data) => {
     const { name, email, password } = data;
 
@@ -27,6 +33,7 @@ const Signup = () => {
       name,
       email,
       password,
+      role,
       callbackURL: "/",
     });
 
@@ -35,9 +42,9 @@ const Signup = () => {
     }
 
     if (res) {
-      await authClient.signOut();
+      // await authClient.signOut();
       toast.success("Signup successful");
-      router.push("/auth/login");
+      router.push("/");
     }
   };
 
@@ -134,11 +141,41 @@ const Signup = () => {
               {isPasswordShow ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
             </span>
           </fieldset>
+          {/* Role */}
+          <RadioGroup
+            name="role"
+            onChange={(value) => setRole(value)}
+            defaultValue="seeker"
+          >
+            <Label>Plan selection</Label>
+            <Description className="text-[20px] text-white">
+              Choose your role
+            </Description>
+            <div className="flex gap-8">
+              <Radio selected value="seeker">
+                <Radio.Control>
+                  <Radio.Indicator />
+                </Radio.Control>
+                <Radio.Content>
+                  <Label className="text-white">Job Seeker</Label>
+                </Radio.Content>
+              </Radio>
+              <Radio value="recruiter">
+                <Radio.Control>
+                  <Radio.Indicator />
+                </Radio.Control>
+                <Radio.Content>
+                  <Label className="text-white">Recruiter</Label>
+                </Radio.Content>
+              </Radio>
+            </div>
+          </RadioGroup>
           <button className="btn bg-gradient-to-r from-violet-600 to-indigo-500 py-2 text-white rounded-lg w-full   font-semibold cursor-pointer">
             Register
           </button>
         </form>
-        <div className="text-center mt-4 lg:w-1/2 mx-auto">
+        <p className="text-white text-center py-5">Or</p>
+        <div className="text-center lg:w-1/2 mx-auto">
           {/* Continue with Google Button */}
           <button
             // onClick={handleGoogleLogin}

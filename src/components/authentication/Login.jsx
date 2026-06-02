@@ -98,7 +98,8 @@ const Login = () => {
             Login
           </button>
         </form>
-        <div className="text-center mt-4 lg:w-1/2 mx-auto">
+        <p className="text-white text-center py-5">Or</p>
+        <div className="text-center lg:w-1/2 mx-auto">
           {/* Continue with Google Button */}
           <button
             // onClick={handleGoogleLogin}
