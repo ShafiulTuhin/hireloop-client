@@ -1,12 +1,39 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Link } from "@heroui/react";
+import { Button, Link, Spinner } from "@heroui/react";
 import Image from "next/image";
 import Logo from "@/assets/logo.png";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { data, isPending } = authClient.useSession();
+
+  const user = data?.user;
+  const session = data?.session;
+  console.log(user, session);
+
+  const router = useRouter();
+  const handleLogout = async () => {
+    try {
+      await authClient.signOut({
+        fetchOptions: {
+          onSuccess: () => {
+            router.push("/");
+            toast.success("Logged out successfully", {
+              position: "top-center",
+              autoClose: 5000,
+            });
+          },
+        },
+      });
+    } catch (error) {
+      toast.error("Logout failed");
+    }
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-[#0f172a] py-5">
@@ -32,17 +59,31 @@ export default function Navbar() {
             </Link>
 
             <div className="h-5 w-px bg-white/20" />
-
-            <Link
-              href="/auth/login"
-              className="text-sm font-medium text-violet-400 hover:text-violet-300"
-            >
-              Sign In
-            </Link>
-
-            <Button
-              radius="lg"
-              className="
+            {isPending ? (
+              <div className="flex justify-center items-center py-1">
+                <Spinner size="sm" />
+              </div>
+            ) : user ? (
+              <Button
+                onClick={handleLogout}
+                className="
+                bg-gradient-to-r
+                from-violet-600
+                to-indigo-500"
+              >
+                Logout
+              </Button>
+            ) : (
+              <div className="space-x-4">
+                <Link
+                  href="/auth/login"
+                  className="text-sm font-medium text-violet-400 hover:text-violet-300"
+                >
+                  Sign In
+                </Link>
+                <Button
+                  radius="lg"
+                  className="
                 bg-gradient-to-r
                 from-violet-600
                 to-indigo-500
@@ -50,9 +91,11 @@ export default function Navbar() {
                 text-white
                 font-medium
               "
-            >
-              Get Started
-            </Button>
+                >
+                  Get Started
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Mobile Toggle */}
@@ -104,16 +147,36 @@ export default function Navbar() {
 
               <div className="my-4 h-px bg-white/10" />
 
-              <Link href="#" className="py-3 font-medium text-violet-400">
-                Sign In
-              </Link>
-
-              <Button
-                radius="lg"
-                className="mt-3 bg-gradient-to-r from-violet-600 to-indigo-500 text-white"
-              >
-                Get Started
-              </Button>
+              {isPending ? (
+                <div className="flex justify-center items-center py-1">
+                  <Spinner size="sm" />
+                </div>
+              ) : user ? (
+                <Button
+                  onClick={handleLogout}
+                  className="
+                bg-gradient-to-r
+                from-violet-600
+                to-indigo-500"
+                >
+                  Logout
+                </Button>
+              ) : (
+                <div className="space-x-4">
+                  <Link
+                    href="/auth/login"
+                    className="py-3 font-medium text-violet-400"
+                  >
+                    Sign In
+                  </Link>
+                  <Button
+                    radius="lg"
+                    className="mt-3 bg-gradient-to-r from-violet-600 to-indigo-500 text-white"
+                  >
+                    Get Started
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         )}
