@@ -19,10 +19,10 @@ const FindJob = () => {
           <span className="h-[1px] w-6 bg-gray-500"></span>
         </h2>
 
-        <h2 className="text-3xl font-bold mt-5 text-center">
+        <h2 className="md:text-4xl text-2xl font-bold mt-5 text-center">
           Find Your Dream Job Today
         </h2>
-        <p className="text-gray-700 text-center mt-3">
+        <p className="text-gray-500 text-center mt-3">
           HireLoop connects top talent with world-class companies. Browse
           thousands of <br /> curated opportunities and land your next role —
           faster.
@@ -61,13 +61,15 @@ const FindJob = () => {
             </button>
           </div>
         </div>
-        <div className="flex justify-center items-center gap-3 mt-6 text-gray-500">
-          <h2>Trending Position:</h2>
-          <p className="bg-gray-900 rounded-full font-bold p-2">
+        <div className="flex flex-wrap justify-center items-center gap-3 mt-6 text-gray-500">
+          <h2 className="font-bold">Trending Position :</h2>
+          <p className="bg-gray-800 rounded-full font-bold py-2 px-4">
             Product Manager
           </p>
-          <p className="bg-gray-900 rounded-full font-bold p-2">AI Engineer</p>
-          <p className="bg-gray-900 rounded-full font-bold p-2">
+          <p className="bg-gray-800 rounded-full font-bold py-2 px-4">
+            AI Engineer
+          </p>
+          <p className="bg-gray-800 rounded-full font-bold py-2 px-4">
             Dev-ops Engineer
           </p>
         </div>

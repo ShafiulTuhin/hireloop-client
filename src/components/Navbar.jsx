@@ -9,8 +9,8 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#0f172a] px-4 py-5">
-      <div className="mx-auto max-w-7xl">
+    <nav className="sticky top-0 z-50 bg-[#0f172a] py-5">
+      <div className="md:px-10 px-4">
         <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-6 py-3 backdrop-blur-md shadow-lg">
           {/* Logo */}
           <Link href="/" className="p-0">

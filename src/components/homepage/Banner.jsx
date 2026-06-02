@@ -38,8 +38,8 @@ export default function Banner() {
         </div>
 
         {/* ⭐ Stats (mobile-safe, no absolute positioning) */}
-        <div className="relative z-10 mt-[-80px] pb-12 px-2">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
+        <div className="relative z-10 mt-[-200px] pb-12 px-2">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 container mx-auto">
             {stats.map((item, index) => {
               const Icon = item.icon;
 
