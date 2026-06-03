@@ -16,8 +16,9 @@ import {
   toast,
 } from "@heroui/react";
 import { Briefcase, Globe } from "@gravity-ui/icons";
-// import { createJob } from "@/lib/actions/jobs";
-// import { redirect } from "next/navigation";
+
+import { redirect } from "next/navigation";
+import { createJob } from "@/lib/actions/jobs";
 
 export default function PostJobPage() {
   // Mock configuration for recruiter's authenticated state
@@ -71,13 +72,13 @@ export default function PostJobPage() {
     };
     console.log(payload);
 
-    // const res = await createJob(payload);
-    // if (res.insertedId) {
-    //     toast.success("Job posted successfully!");
-    //     e.target.reset();
-    //     setIsRemote(false);
-    //     redirect("/dashboard/recruiter/jobs");
-    // }
+    const res = await createJob(payload);
+    if (res.insertedId) {
+      toast.success("Job posted successfully!");
+      e.target.reset();
+      setIsRemote(false);
+      redirect("/dashboard/recruiter/jobs");
+    }
   };
 
   // Dark styles styled to match your image_988c20.png reference layout

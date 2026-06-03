@@ -6,7 +6,7 @@ import Avatar from "@/assets/avatar.png";
 const User = () => {
   const { data } = authClient.useSession();
   const user = data?.user;
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="flex gap-2 items-center mb-10">
