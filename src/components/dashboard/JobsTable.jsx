@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@heroui/react";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { FiEdit, FiEye, FiTrash2 } from "react-icons/fi";
 
 export default function JobsTable({ jobs }) {
   return (
@@ -56,6 +56,10 @@ export default function JobsTable({ jobs }) {
 
                 <td className="p-3 md:p-4">
                   <div className="flex gap-2">
+                    <Button isIconOnly size="sm" variant="light">
+                      <FiEye />
+                    </Button>
+
                     <Button isIconOnly size="sm" variant="light">
                       <FiEdit />
                     </Button>
