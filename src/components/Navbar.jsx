@@ -14,7 +14,7 @@ export default function Navbar() {
 
   const user = data?.user;
   const session = data?.session;
-  console.log(user, session);
+  // console.log(user, session);
 
   const router = useRouter();
   const handleLogout = async () => {

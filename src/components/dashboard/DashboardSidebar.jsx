@@ -8,6 +8,7 @@ import {
   Person,
 } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
+import User from "./User";
 
 const DashboardSidebar = () => {
   const navItems = [
@@ -34,21 +35,25 @@ const DashboardSidebar = () => {
   );
   return (
     <div className="bg-gradient-to-b from-[#0b1220] via-gray-900 to-black">
-      <aside className="hidden w-64 shrink-0 p-4 lg:block"> {navContent}</aside>
+      <aside className="hidden w-64 shrink-0 p-4 lg:block">
+        <User /> {navContent}
+      </aside>
 
       <Drawer>
         <Button variant="secondary" className="lg:hidden">
-          <LayoutSideContentLeft />
-          Menu
+          <LayoutSideContentLeft className="" />
         </Button>
         <Drawer.Backdrop>
           <Drawer.Content placement="left">
-            <Drawer.Dialog>
+            <Drawer.Dialog className="bg-gradient-to-b from-[#0b1220] via-gray-900 to-black">
               <Drawer.CloseTrigger />
               <Drawer.Header>
                 <Drawer.Heading>Navigation</Drawer.Heading>
               </Drawer.Header>
-              <Drawer.Body>{navContent}</Drawer.Body>
+              <Drawer.Body>
+                {" "}
+                <User /> {navContent}
+              </Drawer.Body>
             </Drawer.Dialog>
           </Drawer.Content>
         </Drawer.Backdrop>
