@@ -78,7 +78,7 @@ export default function Navbar() {
                   className="
                 bg-gradient-to-r
                 from-violet-600
-                to-indigo-500"
+                to-indigo-500 rounded-lg"
                 >
                   Logout
                 </Button>
@@ -93,7 +93,7 @@ export default function Navbar() {
                 </Link>
                 <Button
                   radius="lg"
-                  className="bg-gradient-to-r from-violet-600 to-indigo-500 px-6 text-white font-medium
+                  className="bg-gradient-to-r from-violet-600 to-indigo-500 px-6 text-white font-medium rounded-lg
               "
                 >
                   Get Started

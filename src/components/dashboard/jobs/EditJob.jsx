@@ -18,6 +18,7 @@ import {
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { FiEdit } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 const EditJob = ({ job }) => {
   const {
@@ -55,7 +56,7 @@ const EditJob = ({ job }) => {
       },
       body: JSON.stringify(updatedJob),
     });
-
+    toast.success("Your change has been updated");
     router.push("/dashboard/recruiter/jobs");
   };
 
@@ -281,7 +282,7 @@ const EditJob = ({ job }) => {
                 type="button"
                 variant="outline"
                 slot="close"
-                className="text-white"
+                className="text-white rounded-lg"
               >
                 Cancel
               </Button>
@@ -291,7 +292,7 @@ const EditJob = ({ job }) => {
                 form="edit-job-form"
                 className="bg-white text-black  bg-gradient-to-r
                 from-violet-600
-                to-indigo-500"
+                to-indigo-500 rounded-lg"
                 slot="close"
               >
                 Update Job

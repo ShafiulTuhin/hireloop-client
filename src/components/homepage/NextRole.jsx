@@ -26,7 +26,7 @@ export default function NextRole() {
               <br />
               already looking for you
             </h1>
-            <p>
+            <p className="text-white mb-5">
               Build a profile in three minutes. The matches start arriving
               tomorrow morning.
             </p>

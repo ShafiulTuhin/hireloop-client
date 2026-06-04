@@ -2,8 +2,9 @@
 
 import { Button } from "@heroui/react";
 import Link from "next/link";
-import { FiEdit, FiEye, FiTrash2 } from "react-icons/fi";
+import { FiEye } from "react-icons/fi";
 import EditJob from "./EditJob";
+import DeleteJob from "./DeleteJob";
 
 export default function JobsTable({ jobs }) {
   return (
@@ -65,9 +66,7 @@ export default function JobsTable({ jobs }) {
                     </Link>
 
                     <EditJob job={job} />
-                    <Button isIconOnly size="sm" variant="light" color="danger">
-                      <FiTrash2 />
-                    </Button>
+                    <DeleteJob job={job} />
                   </div>
                 </td>
               </tr>

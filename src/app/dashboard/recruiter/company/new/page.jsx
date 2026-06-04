@@ -1,7 +1,15 @@
-import React from "react";
+import CreateCompanyProfile from "@/components/dashboard/company/CreateCompanyProfile";
+import { getUserSession } from "@/lib/core/session";
 
-const CreateNewCompany = () => {
-  return <div className="text-white">Create new company</div>;
+const CreateCompanyPage = async () => {
+  const user = await getUserSession();
+  console.log(user);
+
+  return (
+    <div>
+      <CreateCompanyProfile user={user} />
+    </div>
+  );
 };
 
-export default CreateNewCompany;
+export default CreateCompanyPage;

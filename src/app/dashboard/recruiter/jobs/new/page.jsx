@@ -14,11 +14,13 @@ import {
   Switch,
   Button,
   toast,
+  Modal,
 } from "@heroui/react";
 import { Briefcase, Globe } from "@gravity-ui/icons";
 
 import { redirect } from "next/navigation";
 import { createJob } from "@/lib/actions/jobs";
+import Link from "next/link";
 
 export default function PostJobPage() {
   // Mock configuration for recruiter's authenticated state
@@ -454,21 +456,28 @@ export default function PostJobPage() {
           </Fieldset>
 
           {/* Form Actions */}
-          <div className="flex justify-end gap-3 pt-4 border-t border-zinc-800 w-full">
-            <Button
-              type="button"
-              variant="bordered"
-              className="border-zinc-800 text-zinc-300 hover:bg-zinc-900 rounded-lg px-6 font-medium h-11"
-            >
-              Cancel
-            </Button>
+          <Modal.Footer className="flex justify-end gap-3 pt-4 border-t border-zinc-800 w-full">
+            <Link href={"/dashboard/recruiter/jobs"}>
+              {" "}
+              <Button
+                type="button"
+                variant="outline"
+                slot="close"
+                className="border-zinc-800 text-zinc-300 hover:bg-zinc-900 rounded-lg px-6 font-medium h-11"
+              >
+                Cancel
+              </Button>
+            </Link>
+
             <Button
               type="submit"
-              className="bg-white text-black font-semibold hover:bg-zinc-200 rounded-lg px-6 transition-colors h-11"
+              className="bg-gradient-to-r
+                from-violet-600
+                to-indigo-500 text-black font-semibold hover:bg-zinc-200 rounded-lg px-6 transition-colors h-11"
             >
               Post Job
             </Button>
-          </div>
+          </Modal.Footer>
         </Form>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import EditJob from "@/components/dashboard/jobs/EditJob";
 import { getSingleJob } from "@/lib/actions/jobs";
 import { Button, Card, Chip } from "@heroui/react";
-import Link from "next/link";
+
 import {
   FiBriefcase,
   FiCalendar,
@@ -52,18 +52,16 @@ const RecruiterJobDetailsPage = async ({ params }) => {
                   {job.isPubliclyVisible ? "Public" : "Private"}
                 </Chip>
               </div>
-            </div>
-            <Link href={`/dashboard/recruiter/jobs/${job._id}`}>
-              {" "}
+            </div>{" "}
+            {/* <EditJob job={job} /> */}
+            <EditJob job={job} variant="light">
               <Button
                 startContent={<FiEdit />}
-                className="font-medium bg-gradient-to-r
-                from-violet-600
-                to-indigo-500"
+                className="font-medium bg-gradient-to-r from-violet-600 to-indigo-500"
               >
                 Edit Job
               </Button>
-            </Link>
+            </EditJob>
           </div>
         </Card>
 
