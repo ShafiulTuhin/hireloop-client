@@ -1,4 +1,7 @@
 "use server";
+
+import { serverFetch } from "../core/server";
+
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const createCompany = async (newCompanyData) => {
@@ -14,8 +17,7 @@ export const createCompany = async (newCompanyData) => {
   return data;
 };
 
-// export const getSingleJob = async (id) => {
-//   const res = await fetch(`${baseUrl}/jobs/${id}`);
-//   const job = await res.json();
-//   return job;
-// };
+// Get recruiter companies
+export const getRecruiterCompany = async (recruiterEmail) => {
+  return serverFetch(`/my/company/${recruiterEmail}`);
+};

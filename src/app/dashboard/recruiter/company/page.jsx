@@ -1,16 +1,12 @@
 import CompanyProfileCard from "@/components/dashboard/company/CompanyProfileCard";
+import { getRecruiterCompany } from "@/lib/actions/company";
 import { getUserSession } from "@/lib/core/session";
 import React from "react";
 
 const RecruiterCompanyPage = async () => {
   const user = await getUserSession();
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/company/${user.email}`,
-  );
-
-  const company = await res.json();
-  console.log(company);
+  const company = await getRecruiterCompany(user?.email);
 
   return (
     <div>
