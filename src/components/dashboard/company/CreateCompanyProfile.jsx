@@ -16,7 +16,6 @@ import {
   Modal,
 } from "@heroui/react";
 
-import { Globe, Building } from "@gravity-ui/icons";
 import { redirect, useRouter } from "next/navigation";
 import { createCompany } from "@/lib/actions/company";
 
