@@ -7,7 +7,7 @@ import { Button } from "@heroui/react";
 
 export default function NextRole() {
   return (
-    <section className="bg-black overflow-hidden pt-20">
+    <section className="bg-gradient-to-b from-[#0b1220] via-gray-900 to-black overflow-hidden pt-20">
       <div className="">
         {/* Globe */}
         <div className="relative flex justify-center">

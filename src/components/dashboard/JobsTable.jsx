@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@heroui/react";
+import Link from "next/link";
 import { FiEdit, FiEye, FiTrash2 } from "react-icons/fi";
 
 export default function JobsTable({ jobs }) {
@@ -9,7 +10,7 @@ export default function JobsTable({ jobs }) {
       <div className="overflow-x-auto w-full">
         <table className="w-full text-white">
           <thead className="text-xs md:text-sm uppercase text-gray-300">
-            <tr className="border-b border-black">
+            <tr className="border-b border-black bg-gray-800">
               <th className="p-3 md:p-4 text-left">Job Title</th>
               <th className="p-3 md:p-4 text-left">Type / Category</th>
               <th className="p-3 md:p-4 text-left">Location</th>
@@ -56,9 +57,12 @@ export default function JobsTable({ jobs }) {
 
                 <td className="p-3 md:p-4">
                   <div className="flex gap-2">
-                    <Button isIconOnly size="sm" variant="light">
-                      <FiEye />
-                    </Button>
+                    <Link href={`/dashboard/recruiter/jobs/${job._id}`}>
+                      {" "}
+                      <Button isIconOnly size="sm" variant="light">
+                        <FiEye />
+                      </Button>
+                    </Link>
 
                     <Button isIconOnly size="sm" variant="light">
                       <FiEdit />

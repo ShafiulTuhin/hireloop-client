@@ -13,3 +13,9 @@ export const createJob = async (newJobData) => {
   const data = await res.json();
   return data;
 };
+
+export const getSingleJob = async (id) => {
+  const res = await fetch(`${baseUrl}/jobs/${id}`);
+  const job = await res.json();
+  return job;
+};
