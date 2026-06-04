@@ -13,7 +13,7 @@ export default function Navbar() {
   const { data, isPending } = authClient.useSession();
 
   const user = data?.user;
-  const session = data?.session;
+  // const session = data?.session;
   // console.log(user, session);
 
   const router = useRouter();
@@ -93,13 +93,7 @@ export default function Navbar() {
                 </Link>
                 <Button
                   radius="lg"
-                  className="
-                bg-gradient-to-r
-                from-violet-600
-                to-indigo-500
-                px-6
-                text-white
-                font-medium
+                  className="bg-gradient-to-r from-violet-600 to-indigo-500 px-6 text-white font-medium
               "
                 >
                   Get Started

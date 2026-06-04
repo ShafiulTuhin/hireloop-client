@@ -1,21 +1,7 @@
-// import { getSingleJob } from "@/lib/actions/jobs";
-// import React from "react";
-
-// const RecruiterJobDetailsPage = async ({ params }) => {
-//   const { id } = await params;
-//   const job = await getSingleJob(id);
-//   console.log(job);
-
-//   return (
-//     <div>
-//       <h2 className="text-white">Job details page</h2>
-//     </div>
-//   );
-// };
-
-// export default RecruiterJobDetailsPage;
+import EditJob from "@/components/dashboard/jobs/EditJob";
 import { getSingleJob } from "@/lib/actions/jobs";
 import { Button, Card, Chip } from "@heroui/react";
+import Link from "next/link";
 import {
   FiBriefcase,
   FiCalendar,
@@ -67,14 +53,17 @@ const RecruiterJobDetailsPage = async ({ params }) => {
                 </Chip>
               </div>
             </div>
-
-            <Button
-              color="primary"
-              startContent={<FiEdit />}
-              className="font-medium"
-            >
-              Edit Job
-            </Button>
+            <Link href={`/dashboard/recruiter/jobs/${job._id}`}>
+              {" "}
+              <Button
+                startContent={<FiEdit />}
+                className="font-medium bg-gradient-to-r
+                from-violet-600
+                to-indigo-500"
+              >
+                Edit Job
+              </Button>
+            </Link>
           </div>
         </Card>
 
@@ -122,7 +111,7 @@ const RecruiterJobDetailsPage = async ({ params }) => {
 
               <div className="space-y-5">
                 <div className="flex items-start gap-3">
-                  <FiMapPin className="mt-1 text-lg text-cyan-400" />
+                  <FiMapPin className="mt-1 text-lg text-indigo-400 font-bold" />
                   <div>
                     <p className="text-sm text-gray-500">Location</p>
                     <p className="text-white">{job.location}</p>
@@ -130,7 +119,7 @@ const RecruiterJobDetailsPage = async ({ params }) => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <FiBriefcase className="mt-1 text-lg text-cyan-400" />
+                  <FiBriefcase className="mt-1 text-lg text-indigo-400 font-bold" />
                   <div>
                     <p className="text-sm text-gray-500">Job Type</p>
                     <p className="capitalize text-white">{job.jobType}</p>
@@ -138,7 +127,7 @@ const RecruiterJobDetailsPage = async ({ params }) => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <FiDollarSign className="mt-1 text-lg text-cyan-400" />
+                  <FiDollarSign className="mt-1 text-lg text-indigo-400 font-bold" />
                   <div>
                     <p className="text-sm text-gray-500">Salary Range</p>
                     <p className="text-white">
@@ -148,7 +137,7 @@ const RecruiterJobDetailsPage = async ({ params }) => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <FiCalendar className="mt-1 text-lg text-cyan-400" />
+                  <FiCalendar className="mt-1 text-lg text-indigo-400 font-bold" />
                   <div>
                     <p className="text-sm text-gray-500">
                       Application Deadline
@@ -158,7 +147,7 @@ const RecruiterJobDetailsPage = async ({ params }) => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <FiGlobe className="mt-1 text-lg text-cyan-400" />
+                  <FiGlobe className="mt-1 text-lg text-indigo-400 font-bold" />
                   <div>
                     <p className="text-sm text-gray-500">Work Mode</p>
                     <p className="text-white">

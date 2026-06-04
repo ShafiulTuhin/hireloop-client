@@ -3,6 +3,7 @@
 import { Button } from "@heroui/react";
 import Link from "next/link";
 import { FiEdit, FiEye, FiTrash2 } from "react-icons/fi";
+import EditJob from "./EditJob";
 
 export default function JobsTable({ jobs }) {
   return (
@@ -58,16 +59,12 @@ export default function JobsTable({ jobs }) {
                 <td className="p-3 md:p-4">
                   <div className="flex gap-2">
                     <Link href={`/dashboard/recruiter/jobs/${job._id}`}>
-                      {" "}
                       <Button isIconOnly size="sm" variant="light">
                         <FiEye />
                       </Button>
                     </Link>
 
-                    <Button isIconOnly size="sm" variant="light">
-                      <FiEdit />
-                    </Button>
-
+                    <EditJob job={job} />
                     <Button isIconOnly size="sm" variant="light" color="danger">
                       <FiTrash2 />
                     </Button>

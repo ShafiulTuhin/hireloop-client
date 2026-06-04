@@ -1,4 +1,4 @@
-import JobsTable from "@/components/dashboard/JobsTable";
+import JobsTable from "@/components/dashboard/jobs/JobsTable";
 import { getCompanyJobs } from "@/lib/api/jobs";
 
 const RecruiterJobPage = async () => {
