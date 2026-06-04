@@ -3,7 +3,7 @@ import { getUserSession } from "@/lib/core/session";
 
 const CreateCompanyPage = async () => {
   const user = await getUserSession();
-  console.log(user);
+  // console.log(user);
 
   return (
     <div>

@@ -77,7 +77,7 @@ export default function CreateCompanyProfile({ user }) {
 
     const payload = {
       companyname: data?.companyname,
-      recruiterEmail: user?.email,
+      recruiterId: user?.id,
       industry: data.industry,
       website: data.website,
       location: data.location,

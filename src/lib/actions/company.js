@@ -18,6 +18,6 @@ export const createCompany = async (newCompanyData) => {
 };
 
 // Get recruiter companies
-export const getRecruiterCompany = async (recruiterEmail) => {
-  return serverFetch(`/my/company/${recruiterEmail}`);
+export const getRecruiterCompany = async (recruiterId) => {
+  return serverFetch(`/my/company/${recruiterId}`);
 };

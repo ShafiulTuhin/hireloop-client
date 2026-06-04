@@ -23,6 +23,8 @@ import { createJob } from "@/lib/actions/jobs";
 import Link from "next/link";
 
 export default function CreateJob({ company }) {
+  console.log(company);
+
   const [isRemote, setIsRemote] = useState(false);
   const [errors, setErrors] = useState({});
 

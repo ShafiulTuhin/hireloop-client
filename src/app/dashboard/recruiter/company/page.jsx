@@ -5,8 +5,9 @@ import React from "react";
 
 const RecruiterCompanyPage = async () => {
   const user = await getUserSession();
+  // console.log(user);
 
-  const company = await getRecruiterCompany(user?.email);
+  const company = await getRecruiterCompany(user?.id);
 
   return (
     <div>
