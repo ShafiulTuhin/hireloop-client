@@ -1,17 +1,13 @@
 import { Button } from "@heroui/react";
+import Image from "next/image";
 import Link from "next/link";
 
 const CompanyProfileCard = ({ company }) => {
-  const {
-    companyname,
-    industry,
-    logo,
-    description,
-    status,
-    employeeRange,
-    location,
-  } = company;
-  if (!company || Object.keys(company).length === 0) {
+  // ✅ Normalize data (array OR object)
+  const data = Array.isArray(company) ? company[0] : company;
+
+  // ✅ Empty state
+  if (!data || Object.keys(data).length === 0) {
     return (
       <div className="w-full lg:w-[60%] mx-auto bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border border-zinc-900 rounded-xl p-6 shadow-2xl text-white">
         <div className="flex flex-col md:flex-row md:justify-between gap-6 border-b border-zinc-800 pb-6">
@@ -38,48 +34,43 @@ const CompanyProfileCard = ({ company }) => {
 
         <div className="py-6 border-b border-zinc-800">
           <h2 className="text-lg font-medium mb-3">About Company</h2>
-
           <p className="text-zinc-500">
             You haven't created a company profile yet. Create your company
             profile and submit it for admin approval before posting jobs.
           </p>
         </div>
-
-        <div className="pt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div>
-            <p className="text-zinc-500 text-sm">Industry</p>
-            <p className="text-zinc-700 mt-1">—</p>
-          </div>
-
-          <div>
-            <p className="text-zinc-500 text-sm">Location</p>
-            <p className="text-zinc-700 mt-1">—</p>
-          </div>
-
-          <div>
-            <p className="text-zinc-500 text-sm">Employee Range</p>
-            <p className="text-zinc-700 mt-1">—</p>
-          </div>
-        </div>
       </div>
     );
   }
 
+  const {
+    companyname,
+    industry,
+    logo,
+    description,
+    status,
+    employeeRange,
+    location,
+  } = data;
+
   return (
-    <div className="w-full lg:w-[60%] mx-auto bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border border-zinc-900 rounded-xl p-6 shadow-2xl text-white">
-      {/* Header */}
+    <div className="w-full lg:w-[60%] mx-auto bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border border-zinc-900 rounded-xl p-4 sm:p-6 shadow-2xl text-white">
+      {/* HEADER */}
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 border-b border-zinc-800 pb-6">
         {/* Logo + Name */}
         <div className="flex items-center gap-4">
-          <img
+          <Image
             src={logo || "/placeholder-company.png"}
-            alt={companyname}
-            className="w-20 h-20 rounded-xl object-cover border border-zinc-800"
+            alt={companyname || "Company"}
+            width={80}
+            height={80}
+            className="rounded-xl object-cover border border-zinc-800"
           />
 
           <div>
-            <h1 className="text-2xl font-semibold">{companyname}</h1>
+            <h1 className="text-xl sm:text-2xl font-semibold">{companyname}</h1>
 
+            {/* STATUS */}
             <div className="mt-2">
               <span
                 className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${
@@ -94,11 +85,11 @@ const CompanyProfileCard = ({ company }) => {
           </div>
         </div>
 
-        {/* Actions */}
-        <div className="flex gap-3">
+        {/* ACTIONS */}
+        <div className="flex flex-col sm:flex-row gap-3">
           <Link href="/dashboard/recruiter/company/edit">
             <Button
-              className="bg-zinc-900 border border-zinc-800 text-zinc-200"
+              className="bg-zinc-900 border border-zinc-800 text-zinc-200 w-full sm:w-auto"
               size="sm"
             >
               Edit Profile
@@ -107,37 +98,36 @@ const CompanyProfileCard = ({ company }) => {
 
           <Button
             size="sm"
-            className="bg-red-950/40 border border-red-900 text-red-400"
+            className="bg-red-950/40 border border-red-900 text-red-400 w-full sm:w-auto"
           >
             Delete Profile
           </Button>
         </div>
       </div>
 
-      {/* Description */}
+      {/* DESCRIPTION */}
       <div className="py-6 border-b border-zinc-800">
         <h2 className="text-lg font-medium mb-3">About Company</h2>
-
         <p className="text-zinc-400 leading-relaxed">
           {description || "No company description available."}
         </p>
       </div>
 
-      {/* Company Info */}
-      <div className="pt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* INFO GRID */}
+      <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <div>
           <p className="text-zinc-500 text-sm">Industry</p>
-          <p className="text-white font-medium mt-1">{industry}</p>
+          <p className="text-white font-medium mt-1">{industry || "-"}</p>
         </div>
 
         <div>
           <p className="text-zinc-500 text-sm">Location</p>
-          <p className="text-white font-medium mt-1">{location}</p>
+          <p className="text-white font-medium mt-1">{location || "-"}</p>
         </div>
 
         <div>
           <p className="text-zinc-500 text-sm">Employee Range</p>
-          <p className="text-white font-medium mt-1">{employeeRange}</p>
+          <p className="text-white font-medium mt-1">{employeeRange || "-"}</p>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ const RecruiterCompanyPage = async () => {
   );
 
   const company = await res.json();
-  // const{companyname,industry,logo,description,status,employeeRange,location} = company
+  console.log(company);
 
   return (
     <div>
