@@ -1,8 +1,14 @@
-"use client";
-import { authClient } from "@/lib/auth-client";
-import { Spinner } from "@heroui/react";
 import { FileText, Briefcase, CircleCheck, Person } from "@gravity-ui/icons";
 import DashboardStats from "@/components/dashboard/DashboardStats";
+import { getUserSession } from "@/lib/core/session";
+import { getRecruiterCompany } from "@/lib/actions/company";
+import {
+  getAllJobs,
+  getMyCompanyJobs,
+  getSeekerJobs,
+} from "@/lib/actions/jobs";
+import ApplicantsAppliedJobs from "@/components/dashboard/jobs/ApplicantsAppliedJobs";
+
 const stats = [
   {
     title: "Total Job Posts",
@@ -26,23 +32,20 @@ const stats = [
   },
 ];
 
-const RecruiterPage = () => {
-  const { data, isPending } = authClient.useSession();
-  const user = data?.user;
+const RecruiterPage = async () => {
+  const user = await getUserSession();
+  const jobs = await getSeekerJobs();
+  const company = await getRecruiterCompany(user?.id);
+
+  const appliedJobs =
+    jobs?.filter((job) => job.companyId === company?._id) || [];
+  // console.log(appliedJobs);
 
   return (
     <div className="p-4 bg-gradient-to-b from-black via-gray-900 to-[#0b1220] min-h-screen">
-      <h2 className="text-3xl text-white">
-        Welcome back,
-        {isPending ? (
-          <div className="flex">
-            <Spinner size="sm" />
-          </div>
-        ) : (
-          user?.name
-        )}
-      </h2>
+      <h2 className="text-3xl text-white">Welcome back,{user?.name}</h2>
       <DashboardStats stats={stats} />
+      <ApplicantsAppliedJobs appliedJobs={appliedJobs} />
     </div>
   );
 };

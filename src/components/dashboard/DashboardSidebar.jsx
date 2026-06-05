@@ -11,28 +11,65 @@ import { Button, Drawer } from "@heroui/react";
 import User from "./User";
 import Link from "next/link";
 
-const DashboardSidebar = () => {
-  const navItems = [
-    { icon: House, href: "/dashboard/recruiter", label: "Home" },
-    { icon: Magnifier, href: "/dashboard/recruiter/jobs", label: "Jobs" },
-    {
-      icon: PlusShape,
-      href: "/dashboard/recruiter/jobs/new",
-      label: "Create A job",
-    },
-    {
-      icon: Briefcase,
-      href: "/dashboard/recruiter/company",
-      label: "Company",
-    },
-    // {
-    //   icon: PlusShape,
-    //   href: "/dashboard/recruiter/company/new",
-    //   label: "Create A company",
-    // },
-    { icon: Person, href: "/dashboard/recruiter/profile", label: "Profile" },
-    { icon: Gear, href: "/dashboard/recruiter/settings", label: "Settings" },
-  ];
+const DashboardSidebar = ({ user }) => {
+  // console.log(user);
+
+  const navItems =
+    user?.role === "seeker"
+      ? [
+          {
+            icon: House,
+            href: "/dashboard/seeker",
+            label: "Home",
+          },
+          {
+            icon: Magnifier,
+            href: "/dashboard/seeker/jobs",
+            label: "Jobs",
+          },
+          {
+            icon: Person,
+            href: "/dashboard/seeker/profile",
+            label: "Profile",
+          },
+          {
+            icon: Gear,
+            href: "/dashboard/seeker/settings",
+            label: "Settings",
+          },
+        ]
+      : [
+          {
+            icon: House,
+            href: "/dashboard/recruiter",
+            label: "Home",
+          },
+          {
+            icon: Magnifier,
+            href: "/dashboard/recruiter/jobs",
+            label: "Jobs",
+          },
+          {
+            icon: PlusShape,
+            href: "/dashboard/recruiter/jobs/new",
+            label: "Create A Job",
+          },
+          {
+            icon: Briefcase,
+            href: "/dashboard/recruiter/company",
+            label: "Company",
+          },
+          {
+            icon: Person,
+            href: "/dashboard/recruiter/profile",
+            label: "Profile",
+          },
+          {
+            icon: Gear,
+            href: "/dashboard/recruiter/settings",
+            label: "Settings",
+          },
+        ];
   const navContent = (
     <nav className="flex flex-col gap-1">
       {navItems.map((item) => (

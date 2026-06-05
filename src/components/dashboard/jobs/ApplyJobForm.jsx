@@ -1,5 +1,5 @@
 "use client";
-import { getSeekerJobs } from "@/lib/actions/jobs";
+import { createSeekerJobs, getSeekerJobs } from "@/lib/actions/jobs";
 import { authClient } from "@/lib/auth-client";
 import { Button, DateField, Label, Modal, Surface } from "@heroui/react";
 import { useRouter } from "next/navigation";
@@ -37,6 +37,7 @@ const ApplyJobForm = ({ job, appointment }) => {
       phone: phone,
       experience: experience,
       applyDate: new Date().toISOString().split("T")[0],
+      status: "New",
       //   applyTime: selectedTime,
     };
     console.log(myJob);
@@ -61,11 +62,11 @@ const ApplyJobForm = ({ job, appointment }) => {
     //   },
     // );
 
-    const bookingData = await getSeekerJobs(myJob);
+    const newJob = await createSeekerJobs(myJob);
     // console.log(bookingData);
-    console.log(bookingData);
+    console.log(newJob);
 
-    if (bookingData) {
+    if (newJob) {
       toast.success(`Job for  ${myJob.jobTitle} has applied successfully`);
       router.push("/dashboard/seeker/jobs");
     }

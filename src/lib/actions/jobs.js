@@ -26,8 +26,7 @@ export const getSingleJob = async (id) => {
 };
 
 // get Seeker jobs
-
-export const getSeekerJobs = async (seekerData) => {
+export const createSeekerJobs = async (seekerData) => {
   const res = await fetch(`${baseUrl}/seeker/jobs`, {
     method: "POST",
     headers: {
@@ -38,4 +37,16 @@ export const getSeekerJobs = async (seekerData) => {
   });
 
   return await res.json();
+};
+// Get seeker jobs:
+export const getSeekerJobs = async () => {
+  const res = await fetch(`${baseUrl}/seeker/jobs`);
+  return await res.json();
+};
+
+//Get all own company jobs that applied by applicant
+
+export const getMyCompanyJobs = async (companyId) => {
+  const res = await fetch(`${baseUrl}/seeker/jobs/${companyId}`);
+  return res.json;
 };
