@@ -74,7 +74,6 @@ export default function CreateJob({ company }) {
       redirect("/dashboard/recruiter/jobs");
     }
   };
-
   // Dark styles styled to match your image_988c20.png reference layout
   const textInputClass =
     "w-full text-white bg-[#1c1c1e] border border-zinc-800 hover:bg-[#242426] focus:border-zinc-600 rounded-lg h-12 px-3 text-sm placeholder:text-zinc-600 outline-none transition-all";

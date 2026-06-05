@@ -1,21 +1,25 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 
 const JobCard = ({ jobs }) => {
   return (
-    <div className="w-full bg-zinc-950 py-10 px-4">
+    <div className="w-full bg-gradient-to-b from-black via-gray-900 to-[#0b1220] py-10 px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {jobs?.map((job, index) => (
           <div
             key={index}
-            className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 shadow-md hover:shadow-lg hover:border-zinc-700 transition duration-300 flex flex-col justify-between"
+            className="bg-gradient-to-t from-black via-gray-900 to-[#0b1220] border border-zinc-800 rounded-2xl p-5 shadow-md hover:shadow-lg hover:border-zinc-700 transition duration-300 flex flex-col justify-between space-y-5"
           >
             {/* Top Section */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <img
+                <Image
                   src={job.companyLogo}
                   alt={job.companyname}
+                  width={200}
+                  height={200}
                   className="w-12 h-12 rounded-lg object-cover bg-zinc-800"
                 />
                 <div>
@@ -41,9 +45,12 @@ const JobCard = ({ jobs }) => {
             </div>
 
             {/* Button */}
-            <button className="mt-6 w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-medium transition">
-              Apply Now <FiArrowRight />
-            </button>
+            <Link href={`/jobs/${job._id}`}>
+              {" "}
+              <button className="mt-6 w-full flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-indigo-500 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-medium transition cursor-pointer">
+                Apply Now <FiArrowRight />
+              </button>
+            </Link>
           </div>
         ))}
       </div>
