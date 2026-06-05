@@ -2,7 +2,6 @@ import {
   LayoutSideContentLeft,
   PlusShape,
   Briefcase,
-  Envelope,
   Gear,
   House,
   Magnifier,
@@ -26,11 +25,11 @@ const DashboardSidebar = () => {
       href: "/dashboard/recruiter/company",
       label: "Company",
     },
-    {
-      icon: PlusShape,
-      href: "/dashboard/recruiter/company/new",
-      label: "Create A company",
-    },
+    // {
+    //   icon: PlusShape,
+    //   href: "/dashboard/recruiter/company/new",
+    //   label: "Create A company",
+    // },
     { icon: Person, href: "/dashboard/recruiter/profile", label: "Profile" },
     { icon: Gear, href: "/dashboard/recruiter/settings", label: "Settings" },
   ];

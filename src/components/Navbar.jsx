@@ -46,7 +46,10 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-10">
-            <Link href="#" className="text-sm text-gray-300 hover:text-white">
+            <Link
+              href="/jobs"
+              className="text-sm text-gray-300 hover:text-white"
+            >
               Browse Jobs
             </Link>
 
@@ -137,7 +140,7 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="mt-3 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md md:hidden">
             <div className="flex flex-col p-5">
-              <Link href="#" className="py-3 text-gray-300 hover:text-white">
+              <Link href="jobs" className="py-3 text-gray-300 hover:text-white">
                 Browse Jobs
               </Link>
 
