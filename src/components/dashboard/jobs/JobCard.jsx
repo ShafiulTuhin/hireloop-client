@@ -16,11 +16,10 @@ const JobCard = ({ jobs }) => {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <Image
-                  src={job.companyLogo}
-                  alt={job.companyname}
-                  width={200}
-                  height={200}
-                  className="w-12 h-12 rounded-lg object-cover bg-zinc-800"
+                  src={job.companyLogo || "/fallback-logo.png"}
+                  alt={job.companyname || "Company"}
+                  width={100}
+                  height={100}
                 />
                 <div>
                   <h2 className="text-white font-semibold text-lg">

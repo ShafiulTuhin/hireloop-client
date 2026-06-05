@@ -24,3 +24,18 @@ export const getSingleJob = async (id) => {
   const job = await res.json();
   return job;
 };
+
+// get Seeker jobs
+
+export const getSeekerJobs = async (seekerData) => {
+  const res = await fetch(`${baseUrl}/seeker/jobs`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      // authorization: `Bearer ${tokenData?.token}`,
+    },
+    body: JSON.stringify(seekerData),
+  });
+
+  return await res.json();
+};
