@@ -85,10 +85,7 @@ export default function Navbar() {
 
                 <Button
                   onClick={handleLogout}
-                  className="
-                bg-gradient-to-r
-                from-violet-600
-                to-indigo-500 rounded-lg"
+                  className="bg-gradient-to-r from-violet-600 to-indigo-500 rounded-lg"
                 >
                   Logout
                 </Button>

@@ -33,18 +33,38 @@ const SearchAndFilterJobs = ({ jobs, categories, locations }) => {
   };
 
   // ---------------- SALARY ----------------
+
   const handleSalary = (min, max) => {
     const params = new URLSearchParams(searchParams.toString());
 
-    params.set("minSalary", min);
-    if (max) params.set("maxSalary", max);
-    else params.delete("maxSalary");
+    const currentMin = params.get("minSalary");
+    const currentMax = params.get("maxSalary");
+
+    const newMin = String(min);
+    const newMax = max !== null && max !== undefined ? String(max) : null;
+
+    // 🔥 TOGGLE OFF
+    if (currentMin === newMin && (currentMax || null) === newMax) {
+      params.delete("minSalary");
+      params.delete("maxSalary");
+      router.push(`/jobs?${params.toString()}`);
+      return;
+    }
+
+    // 🔥 SET NEW VALUE
+    params.set("minSalary", newMin);
+
+    if (newMax) {
+      params.set("maxSalary", newMax);
+    } else {
+      params.delete("maxSalary");
+    }
 
     router.push(`/jobs?${params.toString()}`);
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-[#0b1220] text-white">
       {/* ================= TOP SEARCH ================= */}
       <div className="w-full border-b border-zinc-800 bg-black/60 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -58,7 +78,9 @@ const SearchAndFilterJobs = ({ jobs, categories, locations }) => {
 
             <button
               type="submit"
-              className="px-6 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 transition"
+              className="px-6 py-2 rounded-xl bg-gradient-to-r
+                from-violet-600
+                to-indigo-500 hover:bg-violet-700 transition"
             >
               Search
             </button>
@@ -71,7 +93,7 @@ const SearchAndFilterJobs = ({ jobs, categories, locations }) => {
         {/* ================= LEFT SIDEBAR ================= */}
         <aside className="lg:col-span-3 space-y-6">
           {/* CATEGORY */}
-          <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-950">
+          <div className="p-4 rounded-xl border border-zinc-800 bg-gradient-to-b from-black via-gray-900 to-[#0b1220]">
             <h3 className="font-semibold mb-3">Category</h3>
 
             <div className="space-y-2 text-sm text-zinc-300">
@@ -92,7 +114,7 @@ const SearchAndFilterJobs = ({ jobs, categories, locations }) => {
           </div>
 
           {/* SALARY */}
-          <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-950">
+          <div className="p-4 rounded-xl border border-zinc-800 bg-gradient-to-b from-black via-gray-900 to-[#0b1220]">
             <h3 className="font-semibold mb-3">Salary Range</h3>
 
             <div className="space-y-2 text-sm text-zinc-300">
@@ -135,7 +157,7 @@ const SearchAndFilterJobs = ({ jobs, categories, locations }) => {
           </div>
 
           {/* LOCATION */}
-          <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-950">
+          <div className="p-4 rounded-xl border border-zinc-800 bg-gradient-to-b from-black via-gray-900 to-[#0b1220]">
             <h3 className="font-semibold mb-3">Location</h3>
 
             <div className="space-y-2 text-sm text-zinc-300">

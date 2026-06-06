@@ -7,19 +7,16 @@ import React, { useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { toast } from "react-toastify";
 
-const ApplyJobForm = ({ job, appointment }) => {
-  const [experience, setExperience] = useState(null);
-  console.log(job);
-  const [gender, setGender] = useState("");
-  const [phone, setPhone] = useState("");
-
-  const { data } = authClient.useSession();
-  const user = data?.user;
-  console.log(user);
+const ApplyJobForm = ({ job }) => {
+  // const { data } = authClient.useSession();
+  // const user = data?.user;
+  // console.log(user);
 
   const router = useRouter();
 
   const handleApplyToJob = async () => {
+    const user = await getUserSession();
+    const profile = await getMyProfile(user?.id);
     // Check login first
     if (!user) {
       toast.error("Please login first");
@@ -27,22 +24,29 @@ const ApplyJobForm = ({ job, appointment }) => {
       return;
     }
 
-    const myJob = {
-      seekerId: user?.id,
-      seekerName: user?.name,
+    const myJobApplication = {
+      seekerId: profile?.userId,
+      seekerName: profile?.name,
       jobTitle: job?.jobTitle,
       companyName: job?.companyname,
       location: job?.location,
       companyId: job?.companyId,
-      gender: gender,
-      phone: phone,
-      experience: experience,
+      gender: profile?.gender,
+      phone: profile?.phone,
+      experience: profile?.experience,
+      skills: profile?.skills,
+      education: profile?.education,
+      portfolio: profile?.portfolio,
+      resume: profile?.resume,
+      currentSalary: profile?.salary,
+      github: profile?.github,
+      linkedin: profile?.linkedin,
       applyDate: new Date().toISOString().split("T")[0],
       status: "New",
       //   applyTime: selectedTime,
     };
-    console.log(myJob);
-    const requiredFields = [myJob.phone, myJob.gender];
+    console.log(myJobApplication);
+    const requiredFields = [myJobApplication.phone, myJobApplication.gender];
 
     if (requiredFields.some((field) => !field)) {
       toast.error("Please fill all input fields");
@@ -63,12 +67,14 @@ const ApplyJobForm = ({ job, appointment }) => {
     //   },
     // );
 
-    const newJob = await createSeekerJobs(myJob);
+    const newJob = await createSeekerJobs(myJobApplication);
     // console.log(bookingData);
     console.log(newJob);
 
     if (newJob) {
-      toast.success(`Job for  ${myJob.jobTitle} has applied successfully`);
+      toast.success(
+        `Job for  ${myJobApplication.jobTitle} has applied successfully`,
+      );
       router.push("/dashboard/seeker/jobs");
     }
   };
@@ -94,77 +100,11 @@ const ApplyJobForm = ({ job, appointment }) => {
               >
                 <div className="space-y-6 p-6">
                   <div>
-                    <h2 className="text-2xl font-bold text-white">
+                    <h2 className="text-2xl font-bold text-white text-center">
                       Apply for {job?.jobTitle}
                     </h2>
-                    <p className="text-zinc-400 mt-1">
-                      Complete the information below to submit your application.
-                    </p>
                   </div>
 
-                  {/* Gender */}
-                  <div>
-                    <Label className="text-zinc-300 mb-3 block">Gender</Label>
-
-                    <div className="flex gap-3">
-                      <button
-                        type="button"
-                        onClick={() => setGender("male")}
-                        className={`px-5 py-2 rounded-lg border transition cursor-pointer ${
-                          gender === "male"
-                            ? "bg-cyan-500 border-cyan-500 text-white"
-                            : "border-zinc-700 bg-zinc-800 text-zinc-300"
-                        }`}
-                      >
-                        Male
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setGender("female")}
-                        className={`px-5 py-2 rounded-lg border transition cursor-pointer ${
-                          gender === "female"
-                            ? "bg-cyan-500 border-cyan-500 text-white"
-                            : "border-zinc-700 bg-zinc-800 text-zinc-300"
-                        }`}
-                      >
-                        Female
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Phone */}
-                  <div>
-                    <Label className="text-zinc-300 mb-2 block">
-                      Phone Number
-                    </Label>
-
-                    <input
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder="Enter your phone number"
-                      className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-3 text-white outline-none focus:border-cyan-500"
-                    />
-                  </div>
-
-                  {/* Experience */}
-                  <div>
-                    <Label className="text-zinc-300 mb-2 block">
-                      Experience (Years)
-                    </Label>
-
-                    <input
-                      type="number"
-                      min="0"
-                      value={experience || ""}
-                      onChange={(e) => setExperience(e.target.value)}
-                      placeholder="e.g. 2"
-                      className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-3 text-white outline-none focus:border-cyan-500"
-                    />
-                  </div>
-
-                  {/* Submit */}
                   <button
                     onClick={handleApplyToJob}
                     className="w-full h-12 rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-semibold hover:opacity-90 transition cursor-pointer"

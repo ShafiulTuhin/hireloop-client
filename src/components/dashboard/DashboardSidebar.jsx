@@ -61,7 +61,7 @@ const DashboardSidebar = ({ user }) => {
           },
           {
             icon: Person,
-            href: "/dashboard/recruiter/profile",
+            href: "/dashboard/profile",
             label: "Profile",
           },
           {
