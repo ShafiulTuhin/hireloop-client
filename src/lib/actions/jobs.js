@@ -44,8 +44,14 @@ export const getSeekerJobs = async () => {
   return await res.json();
 };
 
-//Get all own company jobs that applied by applicant
+//Get all applied jobs(for recruiter)
 export const getMyCompanyJobs = async (companyId) => {
-  const res = await fetch(`${baseUrl}/seeker/jobs/${companyId}`);
-  return res.json;
+  const res = await fetch(`${baseUrl}/seeker/jobs/company/${companyId}`);
+  return res.json();
+};
+
+//Get all applied jobs(for applicants/seeker)
+export const getMyAppliedJobs = async (seekerId) => {
+  const res = await fetch(`${baseUrl}/seeker/jobs/seeker/${seekerId}`);
+  return res.json();
 };

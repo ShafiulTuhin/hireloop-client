@@ -1,9 +1,16 @@
-import React from "react";
+import { getMyAppliedJobs } from "@/lib/actions/jobs";
+import { getUserSession } from "@/lib/core/session";
 
-const SeekerJobPage = () => {
+const SeekerJobPage = async () => {
+  const user = await getUserSession();
+  console.log(user);
+
+  const jobs = await getMyAppliedJobs(user?.id);
+  console.log(jobs);
+
   return (
     <div>
-      <h2>Seeker job here</h2>
+      <h2 className="text-white">{jobs.length}</h2>
     </div>
   );
 };
