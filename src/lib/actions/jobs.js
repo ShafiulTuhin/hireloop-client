@@ -15,7 +15,9 @@ export const createJob = async (newJobData) => {
 };
 
 export const getAllJobs = async () => {
-  const res = await fetch(`${baseUrl}/jobs`);
+  const res = await fetch(`${baseUrl}/jobs`, {
+    cache: "no-store",
+  });
   return res.json();
 };
 
@@ -52,6 +54,8 @@ export const getMyCompanyJobs = async (companyId) => {
 
 //Get all applied jobs(for applicants/seeker)
 export const getMyAppliedJobs = async (seekerId) => {
-  const res = await fetch(`${baseUrl}/seeker/jobs/seeker/${seekerId}`);
+  const res = await fetch(`${baseUrl}/seeker/jobs/seeker/${seekerId}`, {
+    cache: "no-store",
+  });
   return res.json();
 };
