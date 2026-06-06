@@ -14,10 +14,37 @@ export const createJob = async (newJobData) => {
   return data;
 };
 
-export const getAllJobs = async () => {
-  const res = await fetch(`${baseUrl}/jobs`, {
+// export const getAllJobs = async () => {
+//   const res = await fetch(`${baseUrl}/jobs`, {
+//     cache: "no-store",
+//   });
+//   return res.json();
+// };
+export const getAllJobs = async (searchParams) => {
+  const params = new URLSearchParams();
+
+  if (searchParams) {
+    for (const [key, value] of Object.entries(searchParams)) {
+      if (!value) continue;
+
+      if (Array.isArray(value)) {
+        params.set(key, value.join(","));
+      } else {
+        params.set(key, value.toString());
+      }
+    }
+  }
+
+  const query = params.toString();
+
+  const res = await fetch(`${baseUrl}/jobs?${query}`, {
     cache: "no-store",
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch jobs");
+  }
+
   return res.json();
 };
 
