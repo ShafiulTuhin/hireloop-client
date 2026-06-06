@@ -32,6 +32,7 @@ const ApplyJobForm = ({ job, appointment }) => {
       seekerName: user?.name,
       jobTitle: job?.jobTitle,
       companyName: job?.companyname,
+      location: job?.location,
       companyId: job?.companyId,
       gender: gender,
       phone: phone,
