@@ -1,6 +1,6 @@
 import { Card } from "@heroui/react";
 
-export default function StatCard({ title, value, icon }) {
+export default function StatCard({ title, value, icon, appliedJobs }) {
   return (
     <Card
       className="

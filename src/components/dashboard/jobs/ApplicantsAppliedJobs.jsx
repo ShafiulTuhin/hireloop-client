@@ -19,9 +19,6 @@ const ApplicantsAppliedJobs = ({ appliedJobs }) => {
     );
 
     setJobs(updated);
-
-    // TODO: update backend here
-    // await updateApplicationStatus(id, value);
   };
 
   return (

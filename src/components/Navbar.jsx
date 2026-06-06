@@ -53,8 +53,15 @@ export default function Navbar() {
               Browse Jobs
             </Link>
 
-            <Link href="#" className="text-sm text-gray-300 hover:text-white">
-              Company
+            <Link
+              href={
+                user?.role === "seeker"
+                  ? "/dashboard/seeker"
+                  : "/dashboard/recruiter"
+              }
+              className="text-sm text-gray-300 hover:text-white"
+            >
+              Dashboard
             </Link>
 
             <Link href="#" className="text-sm text-gray-300 hover:text-white">
@@ -147,8 +154,15 @@ export default function Navbar() {
                 Browse Jobs
               </Link>
 
-              <Link href="#" className="py-3 text-gray-300 hover:text-white">
-                Company
+              <Link
+                href={
+                  user?.role === "seeker"
+                    ? "/dashboard/seeker"
+                    : "/dashboard/recruiter"
+                }
+                className="text-sm text-gray-300 hover:text-white"
+              >
+                Dashboard
               </Link>
 
               <Link href="#" className="py-3 text-gray-300 hover:text-white">
