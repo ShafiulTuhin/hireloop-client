@@ -168,8 +168,23 @@ const PricingHome = () => {
                   </li>
                 ))}
               </ul>
+              <form action="/api/checkout_sessions" method="POST">
+                <section>
+                  <button
+                    type="submit"
+                    role="link"
+                    className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
+                      plan.popular
+                        ? "bg-gradient-to-r from-cyan-500 to-emerald-500 text-white hover:opacity-90"
+                        : "border border-zinc-700 text-white hover:border-violet-500 hover:bg-violet-500/10"
+                    }`}
+                  >
+                    Checkout
+                  </button>
+                </section>
+              </form>
 
-              <button
+              {/* <button
                 className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
                   plan.popular
                     ? "bg-gradient-to-r from-cyan-500 to-emerald-500 text-white hover:opacity-90"
@@ -177,7 +192,7 @@ const PricingHome = () => {
                 }`}
               >
                 Get Started
-              </button>
+              </button> */}
             </div>
           ))}
         </div>
