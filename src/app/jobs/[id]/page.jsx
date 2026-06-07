@@ -1,6 +1,7 @@
 import ApplyJobForm from "@/components/dashboard/jobs/ApplyJobForm";
 import JobDetails from "@/components/dashboard/jobs/JobDetails";
-import { getSingleJob } from "@/lib/actions/jobs";
+import { getMyAppliedJobs, getSingleJob } from "@/lib/actions/jobs";
+import { getUserSession } from "@/lib/core/session";
 
 import { Button } from "@heroui/react";
 import Link from "next/link";
@@ -10,7 +11,9 @@ const JobDetailsPageForUser = async ({ params }) => {
   const { id } = await params;
 
   const job = await getSingleJob(id);
-  console.log(job);
+  const user = await getUserSession();
+  const jobs = user ? await getMyAppliedJobs(user.id) : [];
+  console.log(jobs);
 
   return (
     <div className="">
@@ -34,7 +37,7 @@ const JobDetailsPageForUser = async ({ params }) => {
             {/* <Button className="w-full bg-gradient-to-r from-violet-600 to-indigo-500 text-white border-0 shadow-none rounded-lg cursor-pointer">
                     Apply Now <FiArrowRight />
                   </Button> */}
-            <ApplyJobForm job={job} />
+            <ApplyJobForm job={job} jobs={jobs} />
           </div>
         </div>
       </div>

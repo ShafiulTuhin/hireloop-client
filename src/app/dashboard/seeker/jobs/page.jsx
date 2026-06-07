@@ -4,10 +4,8 @@ import { getUserSession } from "@/lib/core/session";
 
 const SeekerJobPage = async () => {
   const user = await getUserSession();
-  console.log(user);
 
   const jobs = await getMyAppliedJobs(user?.id);
-  console.log(jobs);
 
   return (
     <div>

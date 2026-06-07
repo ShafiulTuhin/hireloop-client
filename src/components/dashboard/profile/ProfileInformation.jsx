@@ -1,32 +1,3 @@
-// import Link from "next/link";
-// import React from "react";
-
-// const ProfileInformation = ({ profile }) => {
-//   console.log(profile);
-
-//   return (
-//     <section className="max-w-4xl mx-auto bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border rounded-2xl p-8 md:p-12 text-center shadow-sm">
-//       <h2 className="text-3xl md:text-4xl font-bold text-gray-400">
-//         Share Your Information With Us
-//       </h2>
-
-//       <p className="mt-5 text-gray-500 text-lg leading-8 max-w-3xl mx-auto">
-//         This platform gives you the opportunity to search, apply, and connect
-//         with more than <span className="font-semibold">5,000+</span> job
-//         opportunities. To help recruiters evaluate your profile and increase
-//         your chances of getting hired, please provide your personal, academic,
-//         and professional information.
-//       </p>
-//       <Link href={"/dashboard/profile/create"}>
-//         {" "}
-//         <button className="btn bg-gradient-to-r from-violet-600 to-indigo-500 rounded-lg mt-8 px-8 py-2 cursor-pointer">
-//           Create Your Profile
-//         </button>
-//       </Link>
-//     </section>
-//   );
-// };
-
 // export default ProfileInformation;
 import Link from "next/link";
 import React from "react";
@@ -152,7 +123,7 @@ const ProfileInformation = ({ profile }) => {
       </p>
 
       <Link href={"/dashboard/profile/create"}>
-        <button className="btn bg-gradient-to-r from-violet-600 to-indigo-500 rounded-lg mt-8 px-8 py-2 cursor-pointer">
+        <button className="btn bg-gradient-to-r from-violet-600 to-indigo-500 rounded-lg mt-8 px-8 py-2 cursor-pointer text-white">
           Create Your Profile
         </button>
       </Link>

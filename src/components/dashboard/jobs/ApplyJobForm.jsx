@@ -1,89 +1,32 @@
 "use client";
-import { createSeekerJobs } from "@/lib/actions/jobs";
+
+import { getMyAppliedJobs } from "@/lib/actions/jobs";
 import { getMyProfile } from "@/lib/actions/profile";
 import { authClient } from "@/lib/auth-client";
-// import { getUserSession } from "@/lib/core/session";
+
 import { Button, Modal, Surface } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 import { FiArrowRight } from "react-icons/fi";
 import { toast } from "react-toastify";
 
-const ApplyJobForm = ({ job }) => {
+const ApplyJobForm = ({ job, jobs }) => {
   const { data } = authClient.useSession();
   const user = data?.user;
-  console.log(user);
+  // console.log(user);
 
   const router = useRouter();
 
-  // const handleApplyToJob = async () => {
-  //   // const user = await getUserSession();
-  //   const profile = await getMyProfile(user?.id);
-  //   // Check login first
-  //   if (!user) {
-  //     toast.error("Please login first");
-  //     router.push("/auth/login");
-  //     return;
-  //   }
-
-  //   const myJobApplication = {
-  //     seekerId: profile?.userId,
-  //     seekerName: profile?.name,
-  //     jobTitle: job?.jobTitle,
-  //     companyName: job?.companyname,
-  //     location: job?.location,
-  //     companyId: job?.companyId,
-  //     gender: profile?.gender,
-  //     phone: profile?.phone,
-  //     experience: profile?.experience,
-  //     skills: profile?.skills,
-  //     education: profile?.education,
-  //     portfolio: profile?.portfolio,
-  //     resume: profile?.resume,
-  //     currentSalary: profile?.salary,
-  //     github: profile?.github,
-  //     linkedin: profile?.linkedin,
-  //     applyDate: new Date().toISOString().split("T")[0],
-  //     status: "New",
-  //   };
-  //   console.log(myJobApplication);
-  //   const requiredFields = [myJobApplication.phone, myJobApplication.gender];
-
-  //   if (requiredFields.some((field) => !field)) {
-  //     toast.error("Please fill all input fields");
-  //     return;
-  //   }
-
-  //   // console.log(tokenData);
-  //   // const { data: tokenData } = await authClient.token();
-  //   // const res = await fetch(
-  //   //   `${process.env.NEXT_PUBLIC_API_SERVER_URL}/booking`,
-  //   //   {
-  //   //     method: "POST",
-  //   //     headers: {
-  //   //       "content-type": "application/json",
-  //   //       authorization: `Bearer ${tokenData?.token}`,
-  //   //     },
-  //   //     body: JSON.stringify(myBooking),
-  //   //   },
-  //   // );
-
-  //   const newJob = await createSeekerJobs(myJobApplication);
-  //   // console.log(bookingData);
-  //   console.log(newJob);
-
-  //   if (newJob) {
-  //     toast.success(
-  //       `Job for  ${myJobApplication.jobTitle} has applied successfully`,
-  //     );
-  //     router.push("/dashboard/seeker/jobs");
-  //   }
-  // };
   const handleApplyToJob = async () => {
     // Check login first
     if (!user) {
       toast.error("Please login first");
-      router.push("/auth/login");
+      router.push(`/auth/login?redirect=/jobs/${job._id}`);
+      return;
+    }
+    if (user.role === "recruiter") {
+      toast.error("A recruiter cannot apply for a job");
+      router.push("/jobs");
       return;
     }
 
@@ -117,13 +60,6 @@ const ApplyJobForm = ({ job }) => {
       status: "New",
     };
 
-    // const requiredFields = [myJobApplication.phone, myJobApplication.gender];
-
-    // if (requiredFields.some((field) => !field)) {
-    //   toast.error("Please fill all required fields.");
-    //   return;
-    // }
-
     const newJob = await createSeekerJobs(myJobApplication);
 
     if (newJob) {
@@ -149,9 +85,18 @@ const ApplyJobForm = ({ job }) => {
               <Modal.Heading></Modal.Heading>
             </Modal.Header>
             <Modal.Body className="lg:p-6">
+              <div className="flex gap-3 items-center mb-6">
+                <p className="text-red-500 font-bold text-center">
+                  You have applied {jobs.length} jobs out of 3 free plan in a
+                  month
+                </p>
+                <Button className="rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500">
+                  Subscribe
+                </Button>
+              </div>
               <Surface
-                variant="default"
-                className="bg-zinc-900 border border-zinc-800"
+                // variant="default"
+                className="bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border border-zinc-800 rounded-lg"
               >
                 <div className="space-y-6 p-6">
                   <div>
