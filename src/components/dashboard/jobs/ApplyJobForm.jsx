@@ -1,10 +1,11 @@
 "use client";
 
-import { getMyAppliedJobs } from "@/lib/actions/jobs";
+import { createSeekerJobs, getMyAppliedJobs } from "@/lib/actions/jobs";
 import { getMyProfile } from "@/lib/actions/profile";
 import { authClient } from "@/lib/auth-client";
 
 import { Button, Modal, Surface } from "@heroui/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { FiArrowRight } from "react-icons/fi";
@@ -84,35 +85,128 @@ const ApplyJobForm = ({ job, jobs }) => {
             <Modal.Header>
               <Modal.Heading></Modal.Heading>
             </Modal.Header>
+            {/* <Modal.Body className="lg:p-6">
+              {jobs.length < 3 ? (
+                <Surface
+                  // variant="default"
+                  className="bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border border-zinc-800 rounded-lg"
+                >
+                  <div className="space-y-6 p-6">
+                    {user && (
+                      <div className="flex gap-3 justify-center items-center mb-6">
+                        (
+                        <p className="text-red-500 font-bold text-center">
+                          You have applied free {jobs.length} jobs
+                        </p>
+                        )
+                        <Button className="rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500">
+                          Subscribe
+                        </Button>
+                      </div>
+                    )}
+                    <div>
+                      <h2 className="text-2xl font-bold text-white text-center">
+                        Apply for {job?.jobTitle}
+                      </h2>
+                    </div>
+
+                    <button
+                      onClick={handleApplyToJob}
+                      className="w-full h-12 rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-semibold hover:opacity-90 transition cursor-pointer"
+                    >
+                      Apply Now
+                    </button>
+                  </div>
+                </Surface>
+              ) : (
+                <div className="flex gap-3 justify-center items-center mb-6">
+                  <p className="text-red-500 font-bold text-center">
+                    Your free limit has reached
+                  </p>
+                  <Button className="rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500">
+                    Subscribe
+                  </Button>
+                </div>
+              )}
+            </Modal.Body> */}
             <Modal.Body className="lg:p-6">
-              <div className="flex gap-3 items-center mb-6">
-                <p className="text-red-500 font-bold text-center">
-                  You have applied {jobs.length} jobs out of 3 free plan in a
-                  month
-                </p>
-                <Button className="rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500">
-                  Subscribe
-                </Button>
-              </div>
-              <Surface
-                // variant="default"
-                className="bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border border-zinc-800 rounded-lg"
-              >
-                <div className="space-y-6 p-6">
-                  <div>
-                    <h2 className="text-2xl font-bold text-white text-center">
+              {jobs.length < 3 ? (
+                <Surface className="bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border border-zinc-800 rounded-xl overflow-hidden">
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-violet-600/20 to-indigo-500/20 border-b border-zinc-800 px-6 py-4">
+                    <h2 className="text-2xl font-bold text-center text-white">
                       Apply for {job?.jobTitle}
                     </h2>
+                    <p className="text-center text-gray-400 text-sm mt-1">
+                      Complete your application in one click
+                    </p>
                   </div>
 
-                  <button
-                    onClick={handleApplyToJob}
-                    className="w-full h-12 rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-semibold hover:opacity-90 transition cursor-pointer"
-                  >
-                    Apply Now
-                  </button>
-                </div>
-              </Surface>
+                  <div className="p-6 space-y-6">
+                    {user && (
+                      <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-xl border border-cyan-500/20 bg-cyan-500/5">
+                        <div>
+                          <p className="text-gray-300 text-sm">
+                            Free Plan Usage
+                          </p>
+
+                          <p className="text-white font-semibold">
+                            {jobs.length} of 3 applications used this month
+                          </p>
+                        </div>
+
+                        <Button className="bg-gradient-to-r from-cyan-500 to-emerald-500 text-white rounded-lg">
+                          Subscribe
+                        </Button>
+                      </div>
+                    )}
+
+                    <div className="bg-zinc-900/40 border border-zinc-800 rounded-xl p-5">
+                      <h3 className="text-white font-semibold mb-2">
+                        Before applying
+                      </h3>
+
+                      <ul className="space-y-2 text-sm text-gray-400">
+                        <li>✓ Your profile information will be shared</li>
+                        <li>✓ Resume and portfolio will be included</li>
+                        <li>✓ Recruiters can contact you directly</li>
+                      </ul>
+                    </div>
+
+                    <button
+                      onClick={handleApplyToJob}
+                      className="w-full h-12 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-500 text-white font-semibold hover:opacity-90 transition cursor-pointer shadow-lg"
+                    >
+                      Apply Now
+                    </button>
+                  </div>
+                </Surface>
+              ) : (
+                <Surface className="bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border border-red-500/20 rounded-xl">
+                  <div className="p-8 text-center space-y-5">
+                    <div className="w-16 h-16 mx-auto rounded-full bg-red-500/10 flex items-center justify-center border border-red-500/20">
+                      <span className="text-3xl">⚠️</span>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-bold text-red-500">
+                        Free Limit Reached
+                      </h3>
+
+                      <p className="text-gray-400 mt-2">
+                        You've used all 3 free job applications for this month.
+                        Upgrade your plan to continue applying for jobs.
+                      </p>
+                    </div>
+                    <Link href={"/pricing"}>
+                      {" "}
+                      <Button className="bg-gradient-to-r from-violet-600 to-indigo-500 text-white rounded-xl px-8">
+                        Subscribe Now
+                      </Button>
+                    </Link>
+                  </div>
+                </Surface>
+              )}
             </Modal.Body>
           </Modal.Dialog>
         </Modal.Container>

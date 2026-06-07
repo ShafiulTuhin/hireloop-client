@@ -34,9 +34,6 @@ const JobDetailsPageForUser = async ({ params }) => {
 
           {/* Apply Now Button */}
           <div className="w-2/3">
-            {/* <Button className="w-full bg-gradient-to-r from-violet-600 to-indigo-500 text-white border-0 shadow-none rounded-lg cursor-pointer">
-                    Apply Now <FiArrowRight />
-                  </Button> */}
             <ApplyJobForm job={job} jobs={jobs} />
           </div>
         </div>

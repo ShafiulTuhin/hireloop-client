@@ -64,7 +64,10 @@ export default function Navbar() {
               Dashboard
             </Link>
 
-            <Link href="#" className="text-sm text-gray-300 hover:text-white">
+            <Link
+              href="/pricing"
+              className="text-sm text-gray-300 hover:text-white"
+            >
               Pricing
             </Link>
 
@@ -162,7 +165,10 @@ export default function Navbar() {
                 Dashboard
               </Link>
 
-              <Link href="#" className="py-3 text-gray-300 hover:text-white">
+              <Link
+                href="/pricing"
+                className="py-3 text-gray-300 hover:text-white"
+              >
                 Pricing
               </Link>
 
