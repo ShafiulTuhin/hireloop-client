@@ -69,12 +69,12 @@ export default function CreateProfile({ user }) {
         <input
           name="phone"
           placeholder="Phone"
-          className="input w-full bg-gray-700 text-gray-200"
+          className="input w-full bg-gray-700 text-gray-200 placeholder:text-gray-400"
         />
 
         <select
           name="gender"
-          className="select w-full bg-gray-700 text-gray-200"
+          className="select w-full bg-gray-700 text-gray-200 placeholder:text-gray-400 p-2 rounded-lg"
         >
           <option value="">Gender</option>
           <option value="male">Male</option>
@@ -84,31 +84,31 @@ export default function CreateProfile({ user }) {
         <input
           name="experience"
           placeholder="Experience"
-          className="input w-full bg-gray-700 text-gray-200"
+          className="input w-full bg-gray-700 text-gray-200 placeholder:text-gray-400"
         />
 
         <input
           name="education"
           placeholder="Last Education"
-          className="input w-full bg-gray-700 text-gray-200"
+          className="input w-full bg-gray-700 text-gray-200 placeholder:text-gray-400"
         />
 
         <input
           name="skills"
           placeholder="Skills (React, Node...)"
-          className="input w-full bg-gray-700 text-gray-200"
+          className="input w-full bg-gray-700 text-gray-200 placeholder:text-gray-400"
         />
 
         <input
           name="resume"
           placeholder="Resume URL"
-          className="input w-full bg-gray-700 text-gray-200"
+          className="input w-full bg-gray-700 text-gray-200 placeholder:text-gray-400"
         />
 
         <input
           name="salary"
           placeholder="Current Salary (optional)"
-          className="input w-full bg-gray-700 text-gray-200"
+          className="input w-full bg-gray-700 text-gray-200 placeholder:text-gray-400"
         />
 
         {/* Social Links */}
@@ -116,29 +116,29 @@ export default function CreateProfile({ user }) {
           <input
             name="github"
             placeholder="GitHub"
-            className="input bg-gray-700 text-gray-200"
+            className="input bg-gray-700 text-gray-200 placeholder:text-gray-400"
           />
           <input
             name="linkedin"
             placeholder="LinkedIn"
-            className="input bg-gray-700 text-gray-200"
+            className="input bg-gray-700 text-gray-200 placeholder:text-gray-400"
           />
           <input
             name="portfolio"
             placeholder="Portfolio"
-            className="input bg-gray-700 text-gray-200"
+            className="input bg-gray-700 text-gray-200 placeholder:text-gray-400"
           />
           <input
             name="facebook"
             placeholder="Facebook"
-            className="input bg-gray-700 text-gray-200"
+            className="input bg-gray-700 text-gray-200 placeholder:text-gray-400"
           />
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="btn bg-gradient-to-r from-violet-600 to-indigo-500 w-full mt-6 py-2"
+          className="btn bg-gradient-to-r from-violet-600 to-indigo-500 w-full mt-6 py-2 rounded-lg"
         >
           Save Profile
         </button>

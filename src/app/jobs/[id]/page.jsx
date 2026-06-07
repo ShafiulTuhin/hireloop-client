@@ -1,8 +1,7 @@
 import ApplyJobForm from "@/components/dashboard/jobs/ApplyJobForm";
 import JobDetails from "@/components/dashboard/jobs/JobDetails";
 import { getSingleJob } from "@/lib/actions/jobs";
-import { getMyProfile } from "@/lib/actions/profile";
-import { getUserSession } from "@/lib/core/session";
+
 import { Button } from "@heroui/react";
 import Link from "next/link";
 import React from "react";

@@ -1,22 +1,85 @@
 "use client";
-import { createSeekerJobs, getSeekerJobs } from "@/lib/actions/jobs";
+import { createSeekerJobs } from "@/lib/actions/jobs";
+import { getMyProfile } from "@/lib/actions/profile";
 import { authClient } from "@/lib/auth-client";
-import { Button, DateField, Label, Modal, Surface } from "@heroui/react";
+// import { getUserSession } from "@/lib/core/session";
+import { Button, Modal, Surface } from "@heroui/react";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+
 import { FiArrowRight } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 const ApplyJobForm = ({ job }) => {
-  // const { data } = authClient.useSession();
-  // const user = data?.user;
-  // console.log(user);
+  const { data } = authClient.useSession();
+  const user = data?.user;
+  console.log(user);
 
   const router = useRouter();
 
+  // const handleApplyToJob = async () => {
+  //   // const user = await getUserSession();
+  //   const profile = await getMyProfile(user?.id);
+  //   // Check login first
+  //   if (!user) {
+  //     toast.error("Please login first");
+  //     router.push("/auth/login");
+  //     return;
+  //   }
+
+  //   const myJobApplication = {
+  //     seekerId: profile?.userId,
+  //     seekerName: profile?.name,
+  //     jobTitle: job?.jobTitle,
+  //     companyName: job?.companyname,
+  //     location: job?.location,
+  //     companyId: job?.companyId,
+  //     gender: profile?.gender,
+  //     phone: profile?.phone,
+  //     experience: profile?.experience,
+  //     skills: profile?.skills,
+  //     education: profile?.education,
+  //     portfolio: profile?.portfolio,
+  //     resume: profile?.resume,
+  //     currentSalary: profile?.salary,
+  //     github: profile?.github,
+  //     linkedin: profile?.linkedin,
+  //     applyDate: new Date().toISOString().split("T")[0],
+  //     status: "New",
+  //   };
+  //   console.log(myJobApplication);
+  //   const requiredFields = [myJobApplication.phone, myJobApplication.gender];
+
+  //   if (requiredFields.some((field) => !field)) {
+  //     toast.error("Please fill all input fields");
+  //     return;
+  //   }
+
+  //   // console.log(tokenData);
+  //   // const { data: tokenData } = await authClient.token();
+  //   // const res = await fetch(
+  //   //   `${process.env.NEXT_PUBLIC_API_SERVER_URL}/booking`,
+  //   //   {
+  //   //     method: "POST",
+  //   //     headers: {
+  //   //       "content-type": "application/json",
+  //   //       authorization: `Bearer ${tokenData?.token}`,
+  //   //     },
+  //   //     body: JSON.stringify(myBooking),
+  //   //   },
+  //   // );
+
+  //   const newJob = await createSeekerJobs(myJobApplication);
+  //   // console.log(bookingData);
+  //   console.log(newJob);
+
+  //   if (newJob) {
+  //     toast.success(
+  //       `Job for  ${myJobApplication.jobTitle} has applied successfully`,
+  //     );
+  //     router.push("/dashboard/seeker/jobs");
+  //   }
+  // };
   const handleApplyToJob = async () => {
-    const user = await getUserSession();
-    const profile = await getMyProfile(user?.id);
     // Check login first
     if (!user) {
       toast.error("Please login first");
@@ -24,56 +87,48 @@ const ApplyJobForm = ({ job }) => {
       return;
     }
 
-    const myJobApplication = {
-      seekerId: profile?.userId,
-      seekerName: profile?.name,
-      jobTitle: job?.jobTitle,
-      companyName: job?.companyname,
-      location: job?.location,
-      companyId: job?.companyId,
-      gender: profile?.gender,
-      phone: profile?.phone,
-      experience: profile?.experience,
-      skills: profile?.skills,
-      education: profile?.education,
-      portfolio: profile?.portfolio,
-      resume: profile?.resume,
-      currentSalary: profile?.salary,
-      github: profile?.github,
-      linkedin: profile?.linkedin,
-      applyDate: new Date().toISOString().split("T")[0],
-      status: "New",
-      //   applyTime: selectedTime,
-    };
-    console.log(myJobApplication);
-    const requiredFields = [myJobApplication.phone, myJobApplication.gender];
+    const profile = await getMyProfile(user.id);
 
-    if (requiredFields.some((field) => !field)) {
-      toast.error("Please fill all input fields");
+    // Check profile
+    if (!profile) {
+      toast.error("Please complete your profile before applying.");
+      router.push("/dashboard/profile");
       return;
     }
 
-    // console.log(tokenData);
-    // const { data: tokenData } = await authClient.token();
-    // const res = await fetch(
-    //   `${process.env.NEXT_PUBLIC_API_SERVER_URL}/booking`,
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "content-type": "application/json",
-    //       authorization: `Bearer ${tokenData?.token}`,
-    //     },
-    //     body: JSON.stringify(myBooking),
-    //   },
-    // );
+    const myJobApplication = {
+      seekerId: profile.userId,
+      seekerName: profile.name,
+      jobTitle: job.jobTitle,
+      companyName: job.companyname,
+      location: job.location,
+      companyId: job.companyId,
+      gender: profile.gender,
+      phone: profile.phone,
+      experience: profile.experience,
+      skills: profile.skills,
+      education: profile.education,
+      portfolio: profile.portfolio,
+      resume: profile.resume,
+      currentSalary: profile.salary,
+      github: profile.github,
+      linkedin: profile.linkedin,
+      applyDate: new Date().toISOString().split("T")[0],
+      status: "New",
+    };
+
+    // const requiredFields = [myJobApplication.phone, myJobApplication.gender];
+
+    // if (requiredFields.some((field) => !field)) {
+    //   toast.error("Please fill all required fields.");
+    //   return;
+    // }
 
     const newJob = await createSeekerJobs(myJobApplication);
-    // console.log(bookingData);
-    console.log(newJob);
 
     if (newJob) {
       toast.success(
-        `Job for  ${myJobApplication.jobTitle} has applied successfully`,
+        `Job for ${myJobApplication.jobTitle} has been applied successfully.`,
       );
       router.push("/dashboard/seeker/jobs");
     }

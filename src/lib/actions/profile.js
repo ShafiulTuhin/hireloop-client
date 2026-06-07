@@ -16,5 +16,16 @@ export const createProfile = async (newProfileData) => {
 
 export const getMyProfile = async (userId) => {
   const res = await fetch(`${baseUrl}/profile/${userId}`);
+
+  // No profile found
+  if (res.status === 404) {
+    return null;
+  }
+
+  // Other server errors
+  if (!res.ok) {
+    throw new Error("Failed to fetch profile");
+  }
+
   return res.json();
 };
