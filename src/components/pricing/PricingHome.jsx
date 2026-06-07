@@ -20,6 +20,7 @@ const PricingHome = () => {
     },
     {
       name: "Pro",
+      id: "seeker_pro",
       price: "$19",
       period: "/month",
       features: [
@@ -32,6 +33,7 @@ const PricingHome = () => {
     },
     {
       name: "Premium",
+      id: "seeker_premium",
       price: "$39",
       period: "/month",
       features: [
@@ -59,6 +61,7 @@ const PricingHome = () => {
     },
     {
       name: "Growth",
+      id: "recruiter_growth",
       price: "$49",
       period: "/month",
       features: [
@@ -71,6 +74,7 @@ const PricingHome = () => {
     },
     {
       name: "Enterprise",
+      id: "recruiter_enterprise",
       price: "$149",
       period: "/month",
       features: [
@@ -84,9 +88,7 @@ const PricingHome = () => {
       popular: false,
     },
   ];
-
   const plans = activeTab === "seeker" ? seekerPlans : recruiterPlans;
-
   return (
     <div className="bg-black min-h-screen py-20 px-5">
       <div className="max-w-7xl mx-auto">
@@ -101,7 +103,6 @@ const PricingHome = () => {
             journey.
           </p>
         </div>
-
         {/* Tabs */}
         <div className="flex justify-center mb-14">
           <div className="bg-[#0b1220] border border-zinc-800 p-2 rounded-2xl flex gap-2">
@@ -128,6 +129,7 @@ const PricingHome = () => {
             </button>
           </div>
         </div>
+        {/* <PricingTab /> */}
 
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -169,6 +171,7 @@ const PricingHome = () => {
                 ))}
               </ul>
               <form action="/api/checkout_sessions" method="POST">
+                <input type="hidden" name="plan_id" value={plan.id} />
                 <section>
                   <button
                     type="submit"
@@ -183,20 +186,9 @@ const PricingHome = () => {
                   </button>
                 </section>
               </form>
-
-              {/* <button
-                className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
-                  plan.popular
-                    ? "bg-gradient-to-r from-cyan-500 to-emerald-500 text-white hover:opacity-90"
-                    : "border border-zinc-700 text-white hover:border-violet-500 hover:bg-violet-500/10"
-                }`}
-              >
-                Get Started
-              </button> */}
             </div>
           ))}
         </div>
-
         {/* Bottom CTA */}
         <div className="mt-20 text-center">
           <div className="bg-gradient-to-r from-violet-600/10 to-indigo-500/10 border border-violet-500/20 rounded-3xl p-10">
