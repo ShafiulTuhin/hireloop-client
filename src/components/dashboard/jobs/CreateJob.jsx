@@ -193,6 +193,13 @@ export default function CreateJob({ company }) {
                     >
                       Sales
                     </ListBox.Item>
+                    <ListBox.Item
+                      id="accounts"
+                      className={listItemClasses}
+                      textValue="Accounts"
+                    >
+                      Sales
+                    </ListBox.Item>
                   </ListBox>
                 </Select.Popover>
               </Select>

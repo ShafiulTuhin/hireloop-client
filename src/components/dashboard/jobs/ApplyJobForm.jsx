@@ -73,7 +73,7 @@ const ApplyJobForm = ({ job, jobs }) => {
   return (
     <Modal>
       <div className="flex justify-center items-center">
-        <Button className="w-full bg-gradient-to-r from-violet-600 to-indigo-500 text-white border-0 shadow-none rounded-lg cursor-pointer">
+        <Button className="min-h-0 py-3 w-full bg-gradient-to-r from-violet-600 to-indigo-500 text-white border-0 shadow-none rounded-lg cursor-pointer">
           Apply Now <FiArrowRight />
         </Button>
       </div>

@@ -89,7 +89,7 @@ const SearchAndFilterJobs = ({ jobs, categories, locations }) => {
       </div>
 
       {/* ================= MAIN LAYOUT ================= */}
-      <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="container mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* ================= LEFT SIDEBAR ================= */}
         <aside className="lg:col-span-3 space-y-6">
           {/* CATEGORY */}
