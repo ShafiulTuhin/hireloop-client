@@ -17,11 +17,11 @@ const JobDetailsPageForUser = async ({ params }) => {
 
   return (
     <div className="">
-      <JobDetails job={job} />
+      <JobDetails job={job} jobs={jobs} />
       <div className="bg-[#0b1220] w-full pb-4">
         <div className="flex items-center justify-center gap-4 w-1/2 mx-auto">
           {/* Back Button */}
-          <div className="w-1/3">
+          {/* <div className="w-1/3">
             <Link href="/jobs">
               <Button
                 className="w-full text-white border-0 shadow-none rounded-lg cursor-pointer border-1"
@@ -30,12 +30,12 @@ const JobDetailsPageForUser = async ({ params }) => {
                 Back
               </Button>
             </Link>
-          </div>
+          </div> */}
 
           {/* Apply Now Button */}
-          <div className="w-2/3">
+          {/* <div className="w-2/3">
             <ApplyJobForm job={job} jobs={jobs} />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

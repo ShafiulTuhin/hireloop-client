@@ -55,9 +55,11 @@ export default function Navbar() {
 
             <Link
               href={
-                user?.role === "seeker"
-                  ? "/dashboard/seeker"
-                  : "/dashboard/recruiter"
+                user
+                  ? user.role === "seeker"
+                    ? "/dashboard/seeker"
+                    : "/dashboard/recruiter"
+                  : "/auth/login"
               }
               className="text-sm text-gray-300 hover:text-white"
             >
