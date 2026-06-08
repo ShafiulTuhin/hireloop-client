@@ -14,6 +14,7 @@ export const createProfile = async (newProfileData) => {
   return data;
 };
 
+// Get own Profile
 export const getMyProfile = async (userId) => {
   const res = await fetch(`${baseUrl}/profile/${userId}`);
 
@@ -28,4 +29,20 @@ export const getMyProfile = async (userId) => {
   }
 
   return res.json();
+};
+
+export const updateProfile = async (profileId, updatedProfile) => {
+  const res = await fetch(`${baseUrl}/profile/${profileId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedProfile),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to update profile");
+  }
+
+  return await res.json();
 };
