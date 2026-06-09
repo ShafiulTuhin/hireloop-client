@@ -13,11 +13,9 @@ import { FiArrowRight } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 const ApplyJobForm = ({ job, jobs, plan }) => {
-  console.log(plan);
-
   const { data } = authClient.useSession();
   const user = data?.user;
-  // console.log(user);
+  console.log(plan);
 
   const router = useRouter();
 
@@ -90,7 +88,7 @@ const ApplyJobForm = ({ job, jobs, plan }) => {
             </Modal.Header>
 
             <Modal.Body className="lg:p-6">
-              {jobs.length < plan.maxCollectionPerMonth ? (
+              {jobs.length < plan?.maxCollectionPerMonth ? (
                 <Surface className="bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border border-zinc-800 rounded-xl overflow-hidden">
                   {/* Header */}
                   <div className="bg-gradient-to-r from-violet-600/20 to-indigo-500/20 border-b border-zinc-800 px-6 py-4">
@@ -111,14 +109,17 @@ const ApplyJobForm = ({ job, jobs, plan }) => {
                           </p>
 
                           <p className="text-white font-semibold">
-                            {jobs.length} of {plan.maxCollectionPerMonth}
+                            {jobs.length} of{" "}
+                            <span>{plan?.maxCollectionPerMonth} </span>
                             applications used this month
                           </p>
                         </div>
-
-                        <Button className="bg-gradient-to-r from-cyan-500 to-emerald-500 text-white rounded-lg">
-                          Subscribe
-                        </Button>
+                        <Link href={"/pricing"}>
+                          {" "}
+                          <Button className="bg-gradient-to-r from-cyan-500 to-emerald-500 text-white rounded-lg">
+                            Subscribe
+                          </Button>
+                        </Link>
                       </div>
                     )}
 
@@ -155,8 +156,9 @@ const ApplyJobForm = ({ job, jobs, plan }) => {
                       </h3>
 
                       <p className="text-gray-400 mt-2">
-                        You've used all 3 free job applications for this month.
-                        Upgrade your plan to continue applying for jobs.
+                        You've used all {plan?.maxCollectionPerMonth} free job
+                        applications for this month. Upgrade your plan to
+                        continue applying for jobs.
                       </p>
                     </div>
                     <Link href={"/pricing"}>
