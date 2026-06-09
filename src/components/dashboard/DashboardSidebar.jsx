@@ -6,6 +6,9 @@ import {
   House,
   Magnifier,
   Person,
+  Persons,
+  Factory,
+  CreditCard,
 } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
 import User from "./User";
@@ -38,38 +41,72 @@ const DashboardSidebar = ({ user }) => {
             label: "Settings",
           },
         ]
-      : [
-          {
-            icon: House,
-            href: "/dashboard/recruiter",
-            label: "Home",
-          },
-          {
-            icon: Magnifier,
-            href: "/dashboard/recruiter/jobs",
-            label: "Jobs",
-          },
-          {
-            icon: PlusShape,
-            href: "/dashboard/recruiter/jobs/new",
-            label: "Create A Job",
-          },
-          {
-            icon: Briefcase,
-            href: "/dashboard/recruiter/company",
-            label: "Company",
-          },
-          {
-            icon: Person,
-            href: "/dashboard/profile",
-            label: "Profile",
-          },
-          {
-            icon: Gear,
-            href: "/dashboard/recruiter/settings",
-            label: "Settings",
-          },
-        ];
+      : user?.role === "seeker"
+        ? [
+            {
+              icon: House,
+              href: "/dashboard/recruiter",
+              label: "Home",
+            },
+            {
+              icon: Magnifier,
+              href: "/dashboard/recruiter/jobs",
+              label: "Jobs",
+            },
+            {
+              icon: PlusShape,
+              href: "/dashboard/recruiter/jobs/new",
+              label: "Create A Job",
+            },
+            {
+              icon: Briefcase,
+              href: "/dashboard/recruiter/company",
+              label: "Company",
+            },
+            {
+              icon: Person,
+              href: "/dashboard/profile",
+              label: "Profile",
+            },
+            {
+              icon: Gear,
+              href: "/dashboard/recruiter/settings",
+              label: "Settings",
+            },
+          ]
+        : [
+            {
+              icon: House,
+              href: "/dashboard/admin",
+              label: "Home",
+            },
+            {
+              icon: Persons,
+              href: "/dashboard/admin/users",
+              label: "Users",
+            },
+            {
+              icon: Factory,
+              href: "/dashboard/admin/company",
+              label: "Company",
+            },
+            {
+              icon: Briefcase,
+              href: "/dashboard/admin/jobs",
+              label: "Jobs",
+            },
+
+            {
+              icon: CreditCard,
+              href: "/dashboard/admin/payments",
+              label: "Payment",
+            },
+            {
+              icon: Gear,
+              href: "/dashboard/admin/settings",
+              label: "Settings",
+            },
+          ];
   const navContent = (
     <nav className="flex flex-col gap-1">
       {navItems.map((item) => (
