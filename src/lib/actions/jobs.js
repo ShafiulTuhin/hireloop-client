@@ -14,12 +14,6 @@ export const createJob = async (newJobData) => {
   return data;
 };
 
-// export const getAllJobs = async () => {
-//   const res = await fetch(`${baseUrl}/jobs`, {
-//     cache: "no-store",
-//   });
-//   return res.json();
-// };
 export const getAllJobs = async (searchParams) => {
   const params = new URLSearchParams();
 

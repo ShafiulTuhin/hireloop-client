@@ -8,6 +8,7 @@ const PricingHome = () => {
   const seekerPlans = [
     {
       name: "Free",
+      id: "seeker_fre",
       price: "$0",
       period: "/forever",
       features: [
@@ -49,6 +50,7 @@ const PricingHome = () => {
   const recruiterPlans = [
     {
       name: "Free",
+      id: "recruiter_free",
       price: "$0",
       period: "/forever",
       features: [

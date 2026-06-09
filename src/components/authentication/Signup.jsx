@@ -29,11 +29,14 @@ const Signup = () => {
   const handleSubmitForm = async (data) => {
     const { name, email, password } = data;
 
+    const plan = role === "seeker" ? "seeker_free" : " recruiter_free";
+
     const { data: res, error } = await authClient.signUp.email({
       name,
       email,
       password,
       role,
+      plan,
       callbackURL: "/",
     });
 

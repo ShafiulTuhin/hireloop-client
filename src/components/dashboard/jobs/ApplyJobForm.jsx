@@ -1,6 +1,7 @@
 "use client";
 
-import { createSeekerJobs, getMyAppliedJobs } from "@/lib/actions/jobs";
+import { createSeekerJobs } from "@/lib/actions/jobs";
+
 import { getMyProfile } from "@/lib/actions/profile";
 import { authClient } from "@/lib/auth-client";
 
@@ -11,7 +12,9 @@ import { useRouter } from "next/navigation";
 import { FiArrowRight } from "react-icons/fi";
 import { toast } from "react-toastify";
 
-const ApplyJobForm = ({ job, jobs }) => {
+const ApplyJobForm = ({ job, jobs, plan }) => {
+  console.log(plan);
+
   const { data } = authClient.useSession();
   const user = data?.user;
   // console.log(user);
@@ -85,52 +88,9 @@ const ApplyJobForm = ({ job, jobs }) => {
             <Modal.Header>
               <Modal.Heading></Modal.Heading>
             </Modal.Header>
-            {/* <Modal.Body className="lg:p-6">
-              {jobs.length < 3 ? (
-                <Surface
-                  // variant="default"
-                  className="bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border border-zinc-800 rounded-lg"
-                >
-                  <div className="space-y-6 p-6">
-                    {user && (
-                      <div className="flex gap-3 justify-center items-center mb-6">
-                        (
-                        <p className="text-red-500 font-bold text-center">
-                          You have applied free {jobs.length} jobs
-                        </p>
-                        )
-                        <Button className="rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500">
-                          Subscribe
-                        </Button>
-                      </div>
-                    )}
-                    <div>
-                      <h2 className="text-2xl font-bold text-white text-center">
-                        Apply for {job?.jobTitle}
-                      </h2>
-                    </div>
 
-                    <button
-                      onClick={handleApplyToJob}
-                      className="w-full h-12 rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500 text-white font-semibold hover:opacity-90 transition cursor-pointer"
-                    >
-                      Apply Now
-                    </button>
-                  </div>
-                </Surface>
-              ) : (
-                <div className="flex gap-3 justify-center items-center mb-6">
-                  <p className="text-red-500 font-bold text-center">
-                    Your free limit has reached
-                  </p>
-                  <Button className="rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-500">
-                    Subscribe
-                  </Button>
-                </div>
-              )}
-            </Modal.Body> */}
             <Modal.Body className="lg:p-6">
-              {jobs.length < 3 ? (
+              {jobs.length < plan.maxCollectionPerMonth ? (
                 <Surface className="bg-gradient-to-b from-[#0b1220] via-gray-900 to-black border border-zinc-800 rounded-xl overflow-hidden">
                   {/* Header */}
                   <div className="bg-gradient-to-r from-violet-600/20 to-indigo-500/20 border-b border-zinc-800 px-6 py-4">
@@ -151,7 +111,8 @@ const ApplyJobForm = ({ job, jobs }) => {
                           </p>
 
                           <p className="text-white font-semibold">
-                            {jobs.length} of 3 applications used this month
+                            {jobs.length} of {plan.maxCollectionPerMonth}
+                            applications used this month
                           </p>
                         </div>
 

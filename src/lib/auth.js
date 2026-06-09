@@ -14,6 +14,9 @@ export const auth = betterAuth({
       role: {
         defaut: "seeker",
       },
+      plan: {
+        default: "seeker",
+      },
     },
   },
   database: mongodbAdapter(db, {
