@@ -35,6 +35,17 @@ export default function Navbar() {
     }
   };
 
+  // const dashBoardLinks = {
+  //   seeker: "dashboard/seeker",
+  //   recruiter: "dashboard/recruiter",
+  //   admin: "dashboard/admin",
+  // };
+  const dashBoardLinks =
+    user?.role === "seeker"
+      ? "dashboard/seeker"
+      : user?.role === "recruiter"
+        ? "dashboard/recruiter"
+        : "dashboard/admin";
   return (
     <nav className="sticky top-0 z-50 bg-[#0f172a] py-5">
       <div className="md:px-10 px-4">
@@ -55,11 +66,14 @@ export default function Navbar() {
 
             <Link
               href={
-                user
-                  ? user.role === "seeker"
-                    ? "/dashboard/seeker"
-                    : "/dashboard/recruiter"
-                  : "/auth/login"
+                user ? dashBoardLinks : "/auth/login"
+                //Direct:
+                //  user.role === "seeker"
+                //   ? "/dashboard/seeker"
+                //   : "/dashboard/recruiter"
+                // : "/auth/login"
+                // Seting object
+                // dashBoardLinks[user?.role || "seeker"]
               }
               className="text-sm text-gray-300 hover:text-white"
             >

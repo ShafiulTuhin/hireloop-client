@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@heroui/react";
+import Link from "next/link";
 import { useState } from "react";
 
 const statusOptions = [
@@ -32,6 +34,7 @@ const ApplicantsAppliedJobs = ({ appliedJobs }) => {
               <th className="p-3 md:p-4 text-left">Date</th>
               <th className="p-3 md:p-4 text-left">Experience</th>
               <th className="p-3 md:p-4 text-left">Status</th>
+              <th className="p-3 md:p-4 text-left">Details</th>
             </tr>
           </thead>
 
@@ -68,6 +71,11 @@ const ApplicantsAppliedJobs = ({ appliedJobs }) => {
                       </option>
                     ))}
                   </select>
+                </td>
+                <td className="p-3 md:p-4">
+                  <Link href={"/dashboard/recruiter/view-profile"}>
+                    <Button className="rounded-lg">View Profile</Button>
+                  </Link>
                 </td>
               </tr>
             ))}
