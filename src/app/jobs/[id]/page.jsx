@@ -3,10 +3,6 @@ import JobDetails from "@/components/dashboard/jobs/JobDetails";
 import { getMyAppliedJobs, getSingleJob } from "@/lib/actions/jobs";
 import { getUserSession } from "@/lib/core/session";
 
-import { Button } from "@heroui/react";
-import Link from "next/link";
-import React from "react";
-
 const JobDetailsPageForUser = async ({ params }) => {
   const { id } = await params;
 

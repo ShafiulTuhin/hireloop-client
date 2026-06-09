@@ -102,22 +102,43 @@ const ApplyJobForm = ({ job, jobs, plan }) => {
 
                   <div className="p-6 space-y-6">
                     {user && (
+                      // <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-xl border border-cyan-500/20 bg-cyan-500/5">
+                      //   <div>
+                      //     <p className="text-gray-300 text-sm">
+                      //       Free Plan Usage
+                      //     </p>
+
+                      //     <p className="text-white font-semibold">
+                      //       {jobs.length} of{" "}
+                      //       <span>{plan?.maxCollectionPerMonth} </span>
+                      //       applications used this month
+                      //     </p>
+                      //   </div>
+                      //   <Link href={"/pricing"}>
+                      //     {" "}
+                      //     <Button className="bg-gradient-to-r from-cyan-500 to-emerald-500 text-white rounded-lg">
+                      //       Subscribe
+                      //     </Button>
+                      //   </Link>
+                      // </div>
                       <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-xl border border-cyan-500/20 bg-cyan-500/5">
                         <div>
                           <p className="text-gray-300 text-sm">
-                            Free Plan Usage
+                            {plan?.name || "Free"} Plan Usage
                           </p>
 
                           <p className="text-white font-semibold">
                             {jobs.length} of{" "}
-                            <span>{plan?.maxCollectionPerMonth} </span>
+                            <span>{plan?.maxCollectionPerMonth ?? 0}</span>{" "}
                             applications used this month
                           </p>
                         </div>
-                        <Link href={"/pricing"}>
-                          {" "}
+
+                        <Link href="/pricing">
                           <Button className="bg-gradient-to-r from-cyan-500 to-emerald-500 text-white rounded-lg">
-                            Subscribe
+                            {plan?.name === "Enterprise"
+                              ? "Manage Plan"
+                              : "Upgrade Plan"}
                           </Button>
                         </Link>
                       </div>
