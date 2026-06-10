@@ -41,7 +41,7 @@ const DashboardSidebar = ({ user }) => {
             label: "Settings",
           },
         ]
-      : user?.role === "seeker"
+      : user?.role === "recruiter"
         ? [
             {
               icon: House,

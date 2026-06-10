@@ -17,7 +17,23 @@ export const createCompany = async (newCompanyData) => {
   return data;
 };
 
-// Get recruiter companies
+// Get all companies for admin():
+export const getAllCompanies = async () => {
+  const res = await fetch(`${baseUrl}/company`);
+  return await res.json();
+};
+
+// Get recruiter companies(for recruiter)
 export const getRecruiterCompany = async (recruiterId) => {
   return serverFetch(`/my/company/${recruiterId}`);
+};
+
+export const updateCompanyStatus = async (companyId, status) => {
+  const res = await fetch(`${baseUrl}/company/${companyId}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status }),
+  });
+
+  return res.json();
 };

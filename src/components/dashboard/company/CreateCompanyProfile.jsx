@@ -16,7 +16,7 @@ import {
   Modal,
 } from "@heroui/react";
 
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { createCompany } from "@/lib/actions/company";
 
 export default function CreateCompanyProfile({ user }) {

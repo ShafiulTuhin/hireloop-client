@@ -42,10 +42,12 @@ export default function Navbar() {
   // };
   const dashBoardLinks =
     user?.role === "seeker"
-      ? "dashboard/seeker"
+      ? "/dashboard/seeker"
       : user?.role === "recruiter"
-        ? "dashboard/recruiter"
-        : "dashboard/admin";
+        ? "/dashboard/recruiter"
+        : user?.role === "admin"
+          ? "/dashboard/admin"
+          : "/auth/login";
   return (
     <nav className="sticky top-0 z-50 bg-[#0f172a] py-5">
       <div className="md:px-10 px-4">
@@ -65,16 +67,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href={
-                user ? dashBoardLinks : "/auth/login"
-                //Direct:
-                //  user.role === "seeker"
-                //   ? "/dashboard/seeker"
-                //   : "/dashboard/recruiter"
-                // : "/auth/login"
-                // Seting object
-                // dashBoardLinks[user?.role || "seeker"]
-              }
+              href={dashBoardLinks}
               className="text-sm text-gray-300 hover:text-white"
             >
               Dashboard
@@ -171,11 +164,7 @@ export default function Navbar() {
               </Link>
 
               <Link
-                href={
-                  user?.role === "seeker"
-                    ? "/dashboard/seeker"
-                    : "/dashboard/recruiter"
-                }
+                href={dashBoardLinks}
                 className="text-sm text-gray-300 hover:text-white"
               >
                 Dashboard
