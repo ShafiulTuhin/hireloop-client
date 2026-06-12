@@ -110,13 +110,14 @@ export default function Navbar() {
                 >
                   Sign In
                 </Link>
-                <Button
-                  radius="lg"
-                  className="bg-gradient-to-r from-violet-600 to-indigo-500 px-6 text-white font-medium rounded-lg
-              "
-                >
-                  Get Started
-                </Button>
+                <Link href="/jobs">
+                  <Button
+                    radius="lg"
+                    className="mt-3 bg-gradient-to-r from-violet-600 to-indigo-500 text-white"
+                  >
+                    Get Started
+                  </Button>
+                </Link>
               </div>
             )}
           </div>
@@ -211,12 +212,14 @@ export default function Navbar() {
                   >
                     Sign In
                   </Link>
-                  <Button
-                    radius="lg"
-                    className="mt-3 bg-gradient-to-r from-violet-600 to-indigo-500 text-white"
-                  >
-                    Get Started
-                  </Button>
+                  <Link href="/jobs">
+                    <Button
+                      radius="lg"
+                      className="mt-3 bg-gradient-to-r from-violet-600 to-indigo-500 text-white"
+                    >
+                      Get Started
+                    </Button>
+                  </Link>
                 </div>
               )}
             </div>

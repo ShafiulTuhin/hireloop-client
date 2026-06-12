@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { serverFetch } from "../core/server";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -34,6 +35,6 @@ export const updateCompanyStatus = async (companyId, status) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ status }),
   });
-
+  revalidatePath("/dashboard/admin/company");
   return res.json();
 };
