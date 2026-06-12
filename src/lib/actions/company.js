@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { serverFetch } from "../core/server";
+import { getHeader, serverFetch } from "../core/server";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -20,8 +20,13 @@ export const createCompany = async (newCompanyData) => {
 
 // Get all companies for admin():
 export const getAllCompanies = async () => {
-  const res = await fetch(`${baseUrl}/company`);
-  return await res.json();
+  const res = await fetch(`${baseUrl}/company`, {
+    headers: { ...(await getHeader()) },
+  });
+  const data = await res.json();
+  console.log(data);
+
+  return data;
 };
 
 // Get recruiter companies(for recruiter)
@@ -32,7 +37,7 @@ export const getRecruiterCompany = async (recruiterId) => {
 export const updateCompanyStatus = async (companyId, status) => {
   const res = await fetch(`${baseUrl}/company/${companyId}`, {
     method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...(await getHeader()) },
     body: JSON.stringify({ status }),
   });
   revalidatePath("/dashboard/admin/company");

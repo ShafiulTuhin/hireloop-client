@@ -1,3 +1,5 @@
+import { getUserToken } from "./session";
+
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const imageBbKey = process.env.NEXT_PUBLIC_IMAGE_API;
 
@@ -26,4 +28,13 @@ export const uploadImageToImageBB = async (file) => {
   }
 
   return data.data.url;
+};
+
+// Header
+export const getHeader = async () => {
+  const token = await getUserToken();
+  const header = {
+    authorization: `Bearer ${token}`,
+  };
+  return token ? header : {};
 };

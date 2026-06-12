@@ -13,7 +13,7 @@ const AdminCompanyList = ({ companies }) => {
 
   // change status locally
   const handleStatusChange = (id, value) => {
-    const updated = data.map((company) =>
+    const updated = data?.map((company) =>
       company._id === id ? { ...company, status: value } : company,
     );
 
