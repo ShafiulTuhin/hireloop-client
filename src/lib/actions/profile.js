@@ -1,4 +1,7 @@
 "use server";
+
+import { getHeader } from "../core/server";
+
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const createProfile = async (newProfileData) => {
@@ -16,7 +19,9 @@ export const createProfile = async (newProfileData) => {
 
 // Get own Profile
 export const getMyProfile = async (userId) => {
-  const res = await fetch(`${baseUrl}/profile/${userId}`);
+  const res = await fetch(`${baseUrl}/profile/${userId}`, {
+    headers: { ...(await getHeader()) },
+  });
 
   // No profile found
   if (res.status === 404) {

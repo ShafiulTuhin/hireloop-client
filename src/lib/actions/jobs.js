@@ -1,4 +1,7 @@
 "use server";
+
+import { getHeader } from "../core/server";
+
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const createJob = async (newJobData) => {
@@ -63,7 +66,9 @@ export const createSeekerJobs = async (seekerData) => {
 };
 // Get seeker jobs:
 export const getSeekerJobs = async () => {
-  const res = await fetch(`${baseUrl}/seeker/jobs`);
+  const res = await fetch(`${baseUrl}/seeker/jobs`, {
+    headers: { ...(await getHeader()) },
+  });
   return await res.json();
 };
 
@@ -77,6 +82,7 @@ export const getMyCompanyJobs = async (companyId) => {
 export const getMyAppliedJobs = async (seekerId) => {
   const res = await fetch(`${baseUrl}/seeker/jobs/seeker/${seekerId}`, {
     cache: "no-store",
+    headers: { ...(await getHeader()) },
   });
   return res.json();
 };

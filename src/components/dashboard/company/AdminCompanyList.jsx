@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 
 const AdminCompanyList = ({ companies }) => {
   const [data, setData] = useState(companies);
+  console.log(data);
+
   const [search, setSearch] = useState("");
   const ITEMS_PER_PAGE = 10;
 
